@@ -1,1 +1,1 @@
-# sptgame.github.io
+# sptgame
