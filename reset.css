@@ -1,0 +1,14 @@
+/* 基础样式重置 */
+        * {
+            margin: -100; 
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #D6E2FC;
+            color: #333;
+            padding: 40px;
+        }
+        
