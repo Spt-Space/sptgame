@@ -30,6 +30,7 @@
 	<link rel="stylesheet" href="pe-pc.css"/>
 	<link rel="stylesheet" href="ore-ui.css"/>
 	<link rel="stylesheet" href="q&a.css"/>
+	<link rel="stylesheet" href="notice.css"/>
 
 	<style>
 		.appear {
@@ -59,7 +60,8 @@
     </script>
 
 <!-- 引入Font Awesome CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"-->
  
 <!-- Font Awesome图标 -->
 <!--  <i class="fas fa-home"></i>  -->
@@ -69,7 +71,7 @@
 
  -->
 <!--center><img id="openscreen" src="open-image.svg" alt="废弃开屏画面"></center-->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="spt_icon.png" alt="Failed to load" width=30>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="spt_icon.jpg" alt="Failed to load" width=30>
 <font class="mojang">The website is for testing.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Space Pioneer Team</font>
 <div id="fixed-button">
 	<div class="list-intro">
@@ -100,6 +102,8 @@
 	</div>
 </div>
 
+<!-- 提示 -->
+<div id="notification" class="notification"></div>
 
 
 <script>
@@ -296,23 +300,133 @@
 				<p>𝙎𝙋𝘼𝘾𝙀</p>
 			</span></center></div>
             
+
+
             <div id="games" class="content-intro"><center><span style="line-height: 2;">
                 <h2><font color=fa6a00><i class="far fa-warehouse"></i>租赁服</font></h2>
                 <p>1</p>
 				</center></span>
             </div>
             
+
+
             <div id="q&a" class="content-intro"><center><span style="line-height: 2;">
-                <h2><font color=fa6a00><i class="far fa-sitemap"></i>问题回答</font></h2>
-                <p>1</p>
-				</center></span>
+                <h2><font color=fa6a00><i class="far fa-sitemap"></i>问题回答</font></h2></center>
+				<center><hr width=50%></center>
+				<span style="line-height: 1;">
+				<p><br></p>
+				<p><center><h3><font color=3C8833>服  务  器  问  题</font></h3></center></p>
+				<p><br></p>
+				</span>
+				<div class="question" onclick="toggleAnswer(1)">
+					为什么服务器进不去？
+				</div>
+        		<div class="answer-wrapper" id="wrapper1">
+            		<div class="answer" id="answer1">
+                		<p>1.检查您的网络连接是否稳定，如果网络正常，请等待几分钟，防止网易服务器抽风</p>
+						<p>2.如果仍然不能成功加载，请上报给我们</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(2)">
+					进入服务器后一直显示"正在加载地形"是怎么回事？
+				</div>
+        		<div class="answer-wrapper" id="wrapper2">
+            		<div class="answer" id="answer2">
+                		<p>1.可能触发了软件的某些bug，建议后台关闭后重新打开</p>
+						<p>2.您由于违反了规则被OP封禁</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(3)">
+					UI显示太挡眼怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper3">
+            		<div class="answer" id="answer3">
+                		<p>1.前往商店的尽头</p>
+						<p>2.按下按钮在三种显示模式中切换</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(4)">
+					地图找不到撤离点怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper4">
+            		<div class="answer" id="answer4">
+                		<p>1.在主城的潜影盒中拿取指南针</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(5)">
+					手持药水潜行后为什么不能触发喝药效果？
+				</div>
+        		<div class="answer-wrapper" id="wrapper5">
+            		<div class="answer" id="answer5">
+                		<p>1.潜行检测指令为了降低错误率只能应用于检测玩家不动时的检测</p>
+						<p>2.查看这瓶药水是否为潜行触发</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(6)">
+					被管理员误封了怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper6">
+            		<div class="answer" id="answer6">
+                		<p>1.加入QQ群反馈，需要提交证据</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(7)">
+					服务器特别卡怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper7">
+            		<div class="answer" id="answer7">
+                		<p>1.检查网络</p>
+						<p>2.如果还不行请上报给我们</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(8)">
+					服务器有外挂怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper8">
+            		<div class="answer" id="answer8">
+                		<p>1.加入QQ群举报，需要视频或截图</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(9)">
+					QQ群审核没通过怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper9">
+            		<div class="answer" id="answer9">
+                		<p>1.确保你的账号安全</p>
+						<p>2.确认你不是外挂使用者</p>
+						<p>3.确保你回答的问题正确且正常</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(10)">
+					怎么进行充值？
+				</div>
+        		<div class="answer-wrapper" id="wrapper10">
+            		<div class="answer" id="answer10">
+                		<p>1.添加服务器主城服务区中两个微信的任意一个</p>
+            		</div>
+        		</div>
+
+				</span>
             </div>
             
+
+
             <div id="join" class="content-intro"><center><span style="line-height: 2;">
                 <h2><font color=fa6a00><i class="far fa-link"></i>加入我们</font></h2>
                 <p>1</p>
 				</center></span>
             </div>
+
+
 
             <div id="website" class="content-intro"><center><span style="line-height: 2;">
                 <h2><font color=fa6a00><i class="far fa-code"></i>关于网站</font></h2>
@@ -329,7 +443,21 @@
 				<p>删除了按钮组与PC,PE切换</p>
 				<p>修改了开屏动画，使其更加有动感</p>
 				<p>为“关于我们”部分撰写了新的文章</p>
-				<img src="25-10-13-img-1.PNG" alt="25-10-13-img-1" width=400px>
+				<img src="25-10-13-img-1.jpg" alt="25-10-13-img-1" width=400px>
+				<p><hr width=50%></p>
+				<p>2025-10-15</p>
+				<p>文字容器的左边框颜色由#3498DB<font color=3498DB>■</font>改为#4EA1FF<font color=4EA1FF>■</font>，现在看起来更亮了</p>
+				<p><hr width=50%></p>
+				<p>2025-10-16</p>
+				<p>Font Awesome图标由V5.15.3改为V6.4.0</p>
+				<p>添加了提示栏</p>
+				<p>
+					<button class="ore" onclick="showNotification('提示','info')">提示</button>&nbsp;
+					<button class="ore" onclick="showNotification('成功','success')">成功</button>&nbsp;
+					<button class="ore" onclick="showNotification('警告','warning')">警告</button>&nbsp;
+					<button class="ore" onclick="showNotification('失败','error')">失败</button>&nbsp;
+					<button class="ore" onclick="showNotification('加载','loading')">加载</button>
+				</p>
 				</center></span>
             </div>
         </div>
@@ -339,6 +467,7 @@
     <script>
         // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
+			showNotification('加载完成', 'success');
             // 获取所有按钮
             const buttons = document.querySelectorAll('.btn');
             
@@ -383,6 +512,95 @@
             }, 100); // 100ms后没有滚动显示文字
         });
     </script>
+    <script>
+        let currentVisibleWrapper = null;
+        
+        function toggleAnswer(id) {
+            const wrapper = document.getElementById(`wrapper${id}`);
+            const question = document.querySelector(`.question[onclick="toggleAnswer(${id})"]`);
+            
+            // 如果点击是当前显示答案，收起
+            if (currentVisibleWrapper === wrapper) {
+                wrapper.classList.remove('active');
+                question.classList.remove('active');
+                currentVisibleWrapper = null;
+                return;
+            }
+            
+            // 收起之前展开答案
+            if (currentVisibleWrapper) {
+                const prevId = currentVisibleWrapper.id.replace('wrapper', '');
+                document.querySelector(`.question[onclick="toggleAnswer(${prevId})"]`).classList.remove('active');
+                currentVisibleWrapper.classList.remove('active');
+            }
+            
+            // 展开新点击答案
+            question.classList.add('active');
+            wrapper.classList.add('active');
+            currentVisibleWrapper = wrapper;
+        }
+    </script>
+    <script>
+        let notificationTimeout;
+		let icon = '';
+        const notification = document.getElementById('notification');
+        
+        function showNotification(message,type) {
+            // 清除之前的定时器和动画
+            clearTimeout(notificationTimeout);
+            notification.classList.remove('slide-in', 'slide-out');
+			notification.style.opacity = '0';
+            
+            // 设置通知内容和样式
+            notification.textContent = message;
+            
+            // 根据类型设置不同样式
+            switch(type) {
+                case 'success':
+					icon = '<i class="fas fa-check-circle"></i>';
+					notification.style.border = '2px solid rgba(16, 174, 83, 1.0)';
+                    notification.style.background = 'rgba(46, 204, 113, 0.95)';
+                    notification.style.color = 'white';
+                    break;
+                case 'warning':
+					icon = '<i class="fas fa-exclamation-triangle"></i>';
+					notification.style.border = '2px solid rgba(211, 166, 0, 1.0)';
+                    notification.style.background = 'rgba(241, 196, 15, 0.95)';
+                    notification.style.color = 'white';
+                    break;
+                case 'error':
+					icon = '<i class="fas fa-times-circle"></i>';
+					notification.style.border = '2px solid rgba(181, 26, 10, 1.0)';
+                    notification.style.background = 'rgba(231, 76, 60, 0.95)';
+                    notification.style.color = 'white';
+                    break;
+                case 'loading':
+					icon = '<i class="fas fa-spinner fa-spin"></i>';
+					notification.style.border = '2px solid rgba(12, 112, 189, 1.0)';
+                    notification.style.background = 'rgba(42, 142, 219, 0.95)';
+                    notification.style.color = 'white';
+                    break;
+                default:
+					icon = '<i class="fas fa-info-circle"></i>';
+					notification.style.border = '2px solid rgba(200, 200, 200, 1.0)';
+                    notification.style.background = 'rgba(255, 255, 255, 0.95)';
+                    notification.style.color = 'black';
+            }
+            
+			notification.innerHTML = icon + ' ' + message;
 
+            // 强制重绘
+            void notification.offsetWidth;
+            
+            // 添加滑入动画
+            notification.classList.add('slide-in');
+            
+            // 设置3秒后自动滑出
+            notificationTimeout = setTimeout(() => {
+                notification.classList.remove('slide-in');
+                notification.classList.add('slide-out');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
