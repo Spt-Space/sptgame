@@ -8,10 +8,19 @@
 	.mojang {
 		font-family:mojang;
 	}
-
+	.fillet {
+		font-family:fillet;
+	}
 	@font-face {
 		font-family: 'mojang';
 		src:url('MOJANG.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'fillet';
+		src:url('fillet2.ttf') format('truetype');
 		font-weight: normal;
 		font-style: normal;
 	}
@@ -24,7 +33,6 @@
 	<link rel="stylesheet" href="css/dropdown.css"/>
 	<link rel="stylesheet" href="css/click.css"/>
 	<link rel="stylesheet" href="css/fix-button.css"/>
-	<link rel="stylesheet" href="css/now-block.css"/>
 	<link rel="stylesheet" href="css/announcement.css"/>
 	<link rel="stylesheet" href="css/pe-pc.css"/>
 	<link rel="stylesheet" href="css/ore-ui.css"/>
@@ -75,7 +83,7 @@
 <div id="fixed-button">
 	<div class="list-intro">
 		<div class="dropdown">
-			<b><button class="dropbtn" id="dropdownBtn"><i class="fas fa-bars"></i> 菜单</button></b>
+			<button class="dropbtn" id="dropdownBtn"><i class="fas fa-bars"></i> 菜单</button>
 			<div class="dropdown-content" id="dropdownContent">
 				<span style="line-height:0.7;">
 				<p><br></p>
@@ -163,10 +171,28 @@
 			<p><hr></p>
 			<p>网站站点由<b><font color=FC3142>GitHub</font></b>创建 由<b><font color=FC3142>HTML5builder</font></b>测试与编辑</p>
 			<p><hr></p>
-			<p>网站网址 <b>https://spt-space.github.io/sptgame/</b></p>
+			<p>网站网址 <b>https://spt-space.github.io/sptgame/</b>&nbsp;<button style="padding:4px 20px;font-size:12px;" class="ore" onclick="copy('https://spt-space.github.io/sptgame/','此网站网址')">复制网址</button></p>
+			<font color=FF404E>调试选项 </font><button class="ore" onclick="detectAllFile()">检测所有资源</button>
 			</font>
         </div>
     </div>
+
+	<script>
+		function detectAllFile() {
+			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MOJANG','TTF');
+			checkFileExists('https://spt-space.github.io/sptgame/css/announcement.css','公告','CSS');			checkFileExists('https://spt-space.github.io/sptgame/css/click.css','点击','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/dropdown.css','下拉菜单','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/fix-button.css','固定','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/notice.css','提示','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/now-block.css','当前状态','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/ore-ui.css','MCUI','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/pe-pc.css','模式切换','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/pop-window.css','弹窗','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/q&a.css','问答','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/reset.css','重置','CSS');
+			checkFileExists('https://spt-space.github.io/sptgame/css/text-container.css','文字容器','CSS');
+		}
+	</script>
 
     <script>
         const modal = document.getElementById('modal');
@@ -230,7 +256,7 @@
         <!-- 网站标题 -->
         <div class="header">
             <h1>𝙎𝙋𝘼𝘾𝙀 𝙋𝙄𝙊𝙉𝙀𝙀𝙍 𝙏𝙀𝘼𝙈</h1>
-            <p><b>创造无限可能</b></p>
+            <p>创造无限可能</p>
         </div>
         
 
@@ -285,17 +311,17 @@
 				<p>是一个专注于为玩家打造优秀游戏环境的组织</p>
 				<p>从无限资源到地铁逃生，都为玩家提供了一个舒适的环境</p>
 				<p>我们积极响应玩家反馈，并且认真处理每一个外挂</p>
-				<p>现在团队的人员为𝙎𝙋𝘼𝘾𝙀<b>&Свобода</b></p>
+				<p>现在团队的人员为𝙎𝙋𝘼𝘾𝙀&<u onclick="showNotification('秀才名归，即Свобода','info')">秀才名归</u></p>
 				<hr width=50%>
 				<p><h3><font color=3C8833>团队变故</font></h3></p>
 				<p>在2025/07/14日</p>	
-				<p>原𝙎𝙋𝙏-𝘾𝙇𝙐𝘽的𝙎𝙋𝘼𝘾𝙀<b>&Свобода</b></p>
+				<p>原𝙎𝙋𝙏-𝘾𝙇𝙐𝘽的𝙎𝙋𝘼𝘾𝙀&<u onclick="showNotification('秀才名归，即Свобода','info')">秀才名归</u></p>
 				<p>因不满于帅帅豪的回档解卡方式以及无底线圈钱行为</p>
 				<p>决定脱离帅帅豪"统治"</p>
 				<p>最终演变为了现在的𝙎𝙋𝙏-𝘾𝙇𝙐𝘽</p>
 				<hr width=50%>
 				<p><h3><font color=3C8833>当前成员</font></h3></p>
-				<p><b>Свобода</b></p>
+				<p><u onclick="showNotification('秀才名归，即Свобода','info')">秀才名归</u></p>
 				<p>𝙎𝙋𝘼𝘾𝙀</p>
 			</span></center></div>
             
@@ -414,6 +440,44 @@
             		</div>
         		</div>
 
+				<span style="line-height: 1;">
+				<p><br></p>
+				<p><center><h3><font color=3C8833>网  站  问  题</font></h3></center></p>
+				<p><br></p>
+				</span>
+				
+				<div class="question" onclick="toggleAnswer(11)">
+					网站看着非常奇怪，只有文字是什么情况？
+				</div>
+        		<div class="answer-wrapper" id="wrapper11">
+            		<div class="answer" id="answer11">
+                		<p>1.请刷新，防止css伪加载</p>
+            		</div>
+        		</div>
+	
+				<div class="question" onclick="toggleAnswer(12)">
+					发现网站bug怎么处理？
+				</div>
+        		<div class="answer-wrapper" id="wrapper12">
+            		<div class="answer" id="answer12">
+                		<p>1.添加QQ群，上报给𝙎𝙋𝘼𝘾𝙀</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(13)">
+					网站挂了怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper13">
+            		<div class="answer" id="answer13">
+                		<p>1.等待GitHub服务器恢复，或进入旧网站:https://sptgame.simdif.com</p>
+						<p>
+						<button style="padding:4px 15px;font-size:12px;" class="ore" onclick="copy('https://sptgame.simdif.com','旧网站网址')">复制网址</button>
+						<button style="padding:4px 15px;font-size:12px;" class="ore" onclick="href('https://sptgame.simdif.com','旧网站')">前往网页</button>
+						</p>
+						<p>2.如果迟迟没有反应，请上报给𝙎𝙋𝘼𝘾𝙀</p>
+            		</div>
+        		</div>
+
 				</span>
             </div>
             
@@ -442,7 +506,7 @@
 				<p>删除了按钮组与PC,PE切换</p>
 				<p>修改了开屏动画，使其更加有动感</p>
 				<p>为“关于我们”部分撰写了新的文章</p>
-				<img src="image/25-10-13-img-1.jpg" alt="25-10-13-img-1" width=400px>
+				<img src="image/25-10-13-img-1.jpg" alt="25-10-13-img-1" width=70%>
 				<p><hr width=50%></p>
 				<p>2025-10-15</p>
 				<p>文字容器的左边框颜色由#3498DB<font color=3498DB>■</font>改为#4EA1FF<font color=4EA1FF>■</font>，现在看起来更亮了</p>
@@ -458,16 +522,39 @@
 					<button class="ore" onclick="showNotification('失败','error')">失败</button>&nbsp;
 					<button class="ore" onclick="showNotification('加载','loading')">加载</button>
 				</p>
+				
+				<p><br></p>
+				<p><hr width=50%></p>
+				<p>2025-10-17</p>
+				<p>字体由宋体更改为圆体</p>
+				<p>字体宽度统一</p>
+				<p>添加资源检测，网址复制，跳转网站按钮</p>
 				</center></span>
             </div>
         </div>
     </div>
 
+	<script>
+		function copy(text,name){
+			showNotification(`复制${name}中`,'loading');
+			setTimeout(()=>{
+				navigator.clipboard.writeText(text);
+				showNotification(`复制${name}成功`,'success');
+			},Math.floor(Math.random() * 500) + 1);
+		}
 
+		function href(url,name){
+			showNotification(`跳转${name}中`,'loading');
+			setTimeout(()=>{
+				showNotification(`跳转${name}成功`,'success');
+				window.location.assign('url');
+			},Math.floor(Math.random() * 500) + 1);
+		}
+	</script>
     <script>
         // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
-			showNotification('加载完成', 'success');
+			showNotification('HTML&CSS加载完成', 'success');
             // 获取所有按钮
             const buttons = document.querySelectorAll('.btn');
             
@@ -490,6 +577,13 @@
             // 默认显示"关于我们"内容
             document.getElementById('about').style.display = 'block';
 		    changeText(0);
+			
+			setTimeout(function() {
+				showNotification('图片加载需要一些时间', 'warning');
+				setTimeout(function(){
+					checkFileExists('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css','Font-awesome','CSS');
+				},1500);
+			}, 1500);
         });
     </script>
 
@@ -602,5 +696,27 @@
             }, 3000);
         }
     </script>
+	<script>
+		function checkFileExists(filePath,fileName,fileType) {
+				let response = null;
+                //使用fetchAPI检测文件
+				showNotification(`检测 ${fileType}:${fileName} 中...`,'loading');
+				setTimeout(()=>{
+                	fetch(filePath, {
+                    	method: 'HEAD'
+                	})
+                	.then(response => {
+                    	if (response.ok) {
+							showNotification(`${fileType}:${fileName} 加载成功`,'success');
+                    	} else {
+							showNotification(`${fileType}:${fileName} 加载失败`,'error');
+                    	}
+                	})
+                	.catch(error => {
+						showNotification(`检测 ${fileType}:${fileName} 失败<p>原因:${error.message}</p>`,'error');
+                	});
+				},Math.floor(Math.random() * (2000-500) + 500));
+            }
+	</script>
 </body>
 </html>
