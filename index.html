@@ -547,7 +547,7 @@
 			showNotification(`跳转${name}中`,'loading');
 			setTimeout(()=>{
 				showNotification(`跳转${name}成功`,'success');
-				window.location.assign('url');
+				window.location.assign(`${url}`);
 			},Math.floor(Math.random() * 500) + 1);
 		}
 	</script>
