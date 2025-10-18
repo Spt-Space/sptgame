@@ -1,4 +1,6 @@
 		document.addEventListener('DOMContentLoaded', function() {
+			document.head.style.marginTop = '-10px';
+			document.body.style.marginTop = '-10px';
 			showNotification('HTML&CSS加载完成', 'success');
 			addItem('网页加载完成','success');
             // 获取所有按钮
