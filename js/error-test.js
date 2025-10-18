@@ -1,3 +1,3 @@
 function errorTest() {
-	letnfwjdfnwufwdnfu,isciqcisj,qwdjisqdjqjs;		
+	hahahahaha;		
 }
