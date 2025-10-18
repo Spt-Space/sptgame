@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minecarft:SPT开发团队 (网易版)</title>
 	<style>
+	@keyframes title {
+		from {
+            opacity: 1;
+		}
+		to {
+            opacity: 0;
+		}
+	}
+	
 	.mojang {
 		font-family:mojang;
 	}
@@ -38,6 +47,7 @@
 	<link rel="stylesheet" href="css/ore-ui.css"/>
 	<link rel="stylesheet" href="css/q&a.css"/>
 	<link rel="stylesheet" href="css/notice.css"/>
+	<link rel="stylesheet" href="css/list.css"/>
 
 	<style>
 		.appear {
@@ -97,7 +107,7 @@
 				<font color=ffffff>..</font> <!-- 手动空格 -->
 				<button class="btn" data-target="q&a" onclick="changeText(2)"><i class="far fa-sitemap"></i>问题回答</button>
 				<font size=1 color=ffffff>.</font> <!-- 手动空格 -->
-				<button class="btn" data-target="join" onclick="changeText(3)"><i class="far fa-link"></i>联系我们</button>
+				<button class="btn" data-target="join" onclick="changeText(3)"><i class="far fa-link"></i>加入我们</button>
 				<p><br></p>
 				<font color=ffffff>..</font> <!-- 手动空格 -->
 				<button class="btn" data-target="website" onclick="changeText(4)"><i class="far fa-code"></i>关于网站</button>
@@ -172,25 +182,43 @@
 			<p>网站站点由<b><font color=FC3142>GitHub</font></b>创建 由<b><font color=FC3142>HTML5builder</font></b>测试与编辑</p>
 			<p><hr></p>
 			<p>网站网址 <b>https://spt-space.github.io/sptgame/</b>&nbsp;<button style="padding:4px 20px;font-size:12px;" class="ore" onclick="copy('https://spt-space.github.io/sptgame/','此网站网址')">复制网址</button></p>
-			<font color=FF404E>调试选项 </font><button class="ore" onclick="detectAllFile()">检测所有资源</button>
+			<font color=FF404E>调试选项 </font>
+			<button id="viewBtn" class="btn-view">查看日志</button>
+			<button class="ore" onclick="detectAllFile()">检测所有资源</button>
+			<button class="ore" onclick="errorTest()">触发错误</button>
+        
+        <div id="listContainer" class="list-container">
+            <ul id="itemList"></ul>
+        </div>
 			</font>
         </div>
     </div>
 
 	<script>
 		function detectAllFile() {
-			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MOJANG','TTF');
-			checkFileExists('https://spt-space.github.io/sptgame/css/announcement.css','公告','CSS');			checkFileExists('https://spt-space.github.io/sptgame/css/click.css','点击','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/dropdown.css','下拉菜单','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/fix-button.css','固定','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/notice.css','提示','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/now-block.css','当前状态','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/ore-ui.css','MCUI','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/pe-pc.css','模式切换','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/pop-window.css','弹窗','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/q&a.css','问答','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/reset.css','重置','CSS');
-			checkFileExists('https://spt-space.github.io/sptgame/css/text-container.css','文字容器','CSS');
+			addItem(`开始检测所有资源  <button onclick="showNotification('调用函数:detectAllFile()','info')" style="outline:1px solid rgba(0,0,0,0.4);font-size:16px;border:none;color:black;background:rgba(0,0,0,0.1);">调用函数</button>`,'info');
+			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MOJANG','TTF','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/announcement.css','公告','CSS','show');			checkFileExists('https://spt-space.github.io/sptgame/css/click.css','点击','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/dropdown.css','下拉菜单','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/fix-button.css','固定','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/notice.css','提示','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/ore-ui.css','MCUI','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/pe-pc.css','模式切换','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/pop-window.css','弹窗','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/q&a.css','问答','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/reset.css','重置','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/text-container.css','文字容器','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/image/25-10-13-img-1.jpg','更新图片-1','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/image/spt_icon.jpg','spt徽标','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MC字体','TTF','show');
+			checkFileExists('https://spt-space.github.io/sptgame/fillet2.ttf','主字体','TTF','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/check-file.css','检测文件','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/copy-href.css','复制与跳转','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/error-test.js','报错测试','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/notice.js','提示','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/q&a.js','问答','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/roll.js','滚动隐藏','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/set-all.js','初始化','JS','show');
 		}
 	</script>
 
@@ -255,6 +283,7 @@
     <div class="container">
         <!-- 网站标题 -->
         <div class="header">
+			<!--img src="image/title.jpg" alt="title" width=80% style="position: fixed;top: 50%;left: 50%;opacity: 0;transform: translate(-50%, -50%);z-index: 10000000;animation:title 2s ease;"-->
             <h1>𝙎𝙋𝘼𝘾𝙀 𝙋𝙄𝙊𝙉𝙀𝙀𝙍 𝙏𝙀𝘼𝙈</h1>
             <p>创造无限可能</p>
         </div>
@@ -477,11 +506,31 @@
 						<p>2.如果迟迟没有反应，请上报给𝙎𝙋𝘼𝘾𝙀</p>
             		</div>
         		</div>
+	
+				<div class="question" onclick="toggleAnswer(14)">
+					网站图片或字体加载不出来怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper14">
+            		<div class="answer" id="answer14">
+                		<p>1.耐心等待，第一次加载会很慢</p>
+						<p>2.检测资源是否存在 <button style="padding:4px 15px;font-size:12px;" class="ore" onclick="detectImageTtfFile()">检测</button></p>
+						<p>3.还不行的话添加QQ群，上报给𝙎𝙋𝘼𝘾𝙀</p>
+            		</div>
+        		</div>
+
 
 				</span>
             </div>
             
-
+	<script>
+		function detectImageTtfFile() {
+			addItem(`开始检测图片与字体资源  <button onclick="showNotification('调用函数:detectImageTtfFile()','info')" style="outline:1px solid rgba(0,0,0,0.4);font-size:16px;border:none;color:black;background:rgba(0,0,0,0.1);">调用函数</button>`,'info');
+			checkFileExists('https://spt-space.github.io/sptgame/image/25-10-13-img-1.jpg','更新图片-1','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/image/spt_icon.jpg','spt徽标','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MC字体','TTF','show');
+			checkFileExists('https://spt-space.github.io/sptgame/fillet2.ttf','主字体','TTF','show');
+		}
+	</script>
 
             <div id="join" class="content-intro"><center><span style="line-height: 2;">
                 <h2><font color=fa6a00><i class="far fa-link"></i>加入我们</font></h2>
@@ -529,194 +578,70 @@
 				<p>字体由宋体更改为圆体</p>
 				<p>字体宽度统一</p>
 				<p>添加资源检测，网址复制，跳转网站按钮</p>
+
+				<p><hr width=50%></p>
+				<p>2025-10-18</p>
+				<p>添加了日志(菜单>网站帮助>查看日志)</p>
+				<p>添加了人工报错按钮(菜单>网站帮助>触发错误)</p>
+				<p>JavaScript分多个文件加载</p>
 				</center></span>
             </div>
         </div>
     </div>
 
 	<script>
-		function copy(text,name){
-			showNotification(`复制${name}中`,'loading');
-			setTimeout(()=>{
-				navigator.clipboard.writeText(text);
-				showNotification(`复制${name}成功`,'success');
-			},Math.floor(Math.random() * 500) + 1);
-		}
-
-		function href(url,name){
-			showNotification(`跳转${name}中`,'loading');
-			setTimeout(()=>{
-				showNotification(`跳转${name}成功`,'success');
-				window.location.assign(`${url}`);
-			},Math.floor(Math.random() * 500) + 1);
-		}
+	window.addEventListener('error', function(event) {
+    	addItem(`<font color=E85445>全局错误</font><p>>> ${event.message}</p><p>Url:${event.source}</p><p>Lineno:${event.lineno} Colno:${event.colno}</p><p>Error:${event.error}</p>`,'error');
+	});
 	</script>
-    <script>
-        // 页面加载完成后执行
-        document.addEventListener('DOMContentLoaded', function() {
-			showNotification('HTML&CSS加载完成', 'success');
-            // 获取所有按钮
-            const buttons = document.querySelectorAll('.btn');
-            
-            // 为每个按钮添加点击事件
-            buttons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // 获取目标内容ID
-                    const targetId = this.getAttribute('data-target');
-                    
-                    // 隐藏所有内容介绍
-                    document.querySelectorAll('.content-intro').forEach(intro => {
-                        intro.style.display = 'none';
-                    });
-                    
-                    // 显示目标内容介绍
-                    document.getElementById(targetId).style.display = 'block';
-                });
-            });
-            
-            // 默认显示"关于我们"内容
-            document.getElementById('about').style.display = 'block';
-		    changeText(0);
-			
-			setTimeout(function() {
-				showNotification('图片加载需要一些时间', 'warning');
-				setTimeout(function(){
-					checkFileExists('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css','Font-awesome','CSS');
-				},1500);
-			}, 1500);
+	<script>
+	//运行列表
+		// 查看列表
+        viewBtn.addEventListener('click', function() {
+            listContainer.classList.toggle('visible');
         });
-    </script>
-
-<!-- 滚动隐藏 -->
-    <script>
-        let isScrolling;
-        const textContainer = document.querySelector('.dropdown');
-
-        window.addEventListener('scroll', function() {
-            // 添加隐藏类
-            textContainer.classList.add('hidden');
             
-            // 清除定时器
-            clearTimeout(isScrolling);
-            
-            // 设置新定时器
-            isScrolling = setTimeout(function() {
-                // 移除隐藏
-                textContainer.classList.remove('hidden');
-            }, 100); // 100ms后没有滚动显示文字
-        });
-    </script>
-    <script>
-        let currentVisibleWrapper = null;
-        
-        function toggleAnswer(id) {
-            const wrapper = document.getElementById(`wrapper${id}`);
-            const question = document.querySelector(`.question[onclick="toggleAnswer(${id})"]`);
-            
-            // 如果点击是当前显示答案，收起
-            if (currentVisibleWrapper === wrapper) {
-                wrapper.classList.remove('active');
-                question.classList.remove('active');
-                currentVisibleWrapper = null;
-                return;
-            }
-            
-            // 收起之前展开答案
-            if (currentVisibleWrapper) {
-                const prevId = currentVisibleWrapper.id.replace('wrapper', '');
-                document.querySelector(`.question[onclick="toggleAnswer(${prevId})"]`).classList.remove('active');
-                currentVisibleWrapper.classList.remove('active');
-            }
-            
-            // 展开新点击答案
-            question.classList.add('active');
-            wrapper.classList.add('active');
-            currentVisibleWrapper = wrapper;
-        }
-    </script>
-    <script>
-        let notificationTimeout;
-		let icon = '';
-        const notification = document.getElementById('notification');
-        
-        function showNotification(message,type) {
-            // 清除之前的定时器和动画
-            clearTimeout(notificationTimeout);
-            notification.classList.remove('slide-in', 'slide-out');
-			notification.style.opacity = '0';
-            
-            // 设置通知内容和样式
-            notification.textContent = message;
-            
-            // 根据类型设置不同样式
-            switch(type) {
+        function addItem(text,type) {
+			let icon = '';
+			let color = '';
+			switch(type) {
                 case 'success':
 					icon = '<i class="fas fa-check-circle"></i>';
-					notification.style.border = '2px solid rgba(16, 174, 83, 1.0)';
-                    notification.style.background = 'rgba(46, 204, 113, 0.95)';
-                    notification.style.color = 'white';
+					color = '<font color=36CD78>';
                     break;
                 case 'warning':
 					icon = '<i class="fas fa-exclamation-triangle"></i>';
-					notification.style.border = '2px solid rgba(211, 166, 0, 1.0)';
-                    notification.style.background = 'rgba(241, 196, 15, 0.95)';
-                    notification.style.color = 'white';
+					color = '<font color=F1C61A>';
                     break;
                 case 'error':
 					icon = '<i class="fas fa-times-circle"></i>';
-					notification.style.border = '2px solid rgba(181, 26, 10, 1.0)';
-                    notification.style.background = 'rgba(231, 76, 60, 0.95)';
-                    notification.style.color = 'white';
+					color = '<font color=E85445>';
                     break;
                 case 'loading':
 					icon = '<i class="fas fa-spinner fa-spin"></i>';
-					notification.style.border = '2px solid rgba(12, 112, 189, 1.0)';
-                    notification.style.background = 'rgba(42, 142, 219, 0.95)';
-                    notification.style.color = 'white';
+					color = '<font color=3493DD>';
                     break;
                 default:
-					icon = '<i class="fas fa-info-circle"></i>';
-					notification.style.border = '2px solid rgba(200, 200, 200, 1.0)';
-                    notification.style.background = 'rgba(255, 255, 255, 0.95)';
-                    notification.style.color = 'black';
+					color = '<font color=000000>';
+					icon = '';
             }
-            
-			notification.innerHTML = icon + ' ' + message;
-
-            // 强制重绘
-            void notification.offsetWidth;
-            
-            // 添加滑入动画
-            notification.classList.add('slide-in');
-            
-            // 设置3秒后自动滑出
-            notificationTimeout = setTimeout(() => {
-                notification.classList.remove('slide-in');
-                notification.classList.add('slide-out');
-            }, 3000);
+            const li = document.createElement('li');
+			let now = new Date();
+			let time = now.toLocaleTimeString();
+            li.innerHTML = `<div>[${time}] ${color}${icon}</font> ${text}</div>`;
+            if (itemList.firstChild) {
+                itemList.insertBefore(li, itemList.firstChild);
+            } else {
+                itemList.appendChild(li);
+            }
         }
-    </script>
-	<script>
-		function checkFileExists(filePath,fileName,fileType) {
-				let response = null;
-                //使用fetchAPI检测文件
-				showNotification(`检测 ${fileType}:${fileName} 中...`,'loading');
-				setTimeout(()=>{
-                	fetch(filePath, {
-                    	method: 'HEAD'
-                	})
-                	.then(response => {
-                    	if (response.ok) {
-							showNotification(`${fileType}:${fileName} 加载成功`,'success');
-                    	} else {
-							showNotification(`${fileType}:${fileName} 加载失败`,'error');
-                    	}
-                	})
-                	.catch(error => {
-						showNotification(`检测 ${fileType}:${fileName} 失败<p>原因:${error.message}</p>`,'error');
-                	});
-				},Math.floor(Math.random() * (2000-500) + 500));
-            }
 	</script>
+	<script src= "js/check-file.js"></script>
+	<script src= "js/copy-href.js"></script>
+	<script src= "js/notice.js"></script>
+	<script src= "js/q&a.js"></script>
+	<script src= "js/roll.js"></script>
+	<script src= "js/set-all.js"></script>
+	<script src= "js/error-test.js"></script>
 </body>
 </html>
