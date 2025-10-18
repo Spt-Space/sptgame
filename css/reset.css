@@ -1,0 +1,15 @@
+/* 基础样式重置 */
+        * {
+            margin: -100; 
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'fillet', sans-serif;
+			font-weight: normal;
+        }
+        
+        body {
+            background-color: #D6E2FC;
+            color: #333;
+            padding: 0px;
+        }
+        

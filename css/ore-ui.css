@@ -1,0 +1,30 @@
+		.ore {
+			font-size:15px;
+			background:#D2D1D6;
+			color:#000000;
+			padding:12px;
+			border-radius: 0px;
+			border: 2px solid #EEEEEF;
+			border-bottom: 4px solid #5A5A5C;
+			border-left: 2px solid #E0E0E0;
+			border-top: 2px solid #E5E5E7;
+			border-right: 2px solid #E5E5E7;
+			transition: all 0.3s ease;
+			transform: translateY(0px);
+			outline: 2px solid #000000;
+		}
+
+		.ore:hover {
+			background:#43942B;
+			color:#ffffff;
+			padding:10px;
+			border-radius: 0px;
+			border: 2px solid #599751;
+			border-bottom: 2px solid #558547;
+			border-left: 2px solid #558547;
+			border-top: 2px solid #599751;
+			border-right: 2px solid #599751;
+			transform: translateY(4px);
+			transition: all 0.3s ease;
+			outline: 2px solid #000000;
+		}
