@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Minecarft:SPT开发团队 (网易版)</title>
+	<style>
+	@keyframes title {
+		from {
+            opacity: 1;
+		}
+		to {
+            opacity: 0;
+		}
+	}
+	.btnhid {
+		box-shadow: var(--shadow-b-l);
+		transition: transform 0.5s ease, opacity 0.5s ease;
+	}
+	.mojang {
+		font-family:mojang;
+	}
+	.fillet {
+		font-family:fillet;
+	}
+	@font-face {
+		font-family: 'mojang';
+		src:url('MOJANG.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'fillet';
+		src:url('fillet2.ttf') format('truetype');
+		font-weight: normal;
+		font-style: normal;
+	}
+	</style>
+
+	<!-- 链接css -->
+	<link rel="stylesheet" href="css/pop-window.css"/>
+	<link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/text-container.css"/>
+	<link rel="stylesheet" href="css/dropdown.css"/>
+	<link rel="stylesheet" href="css/click.css"/>
+	<link rel="stylesheet" href="css/fix-button.css"/>
+	<link rel="stylesheet" href="css/announcement.css"/>
+	<link rel="stylesheet" href="css/pe-pc.css"/>
+	<link rel="stylesheet" href="css/ore-ui.css"/>
+	<link rel="stylesheet" href="css/q&a.css"/>
+	<link rel="stylesheet" href="css/notice.css"/>
+	<link rel="stylesheet" href="css/list.css"/>
+	<link rel="stylesheet" href="css/var.css"/>
+	<link rel="stylesheet" href="css/liquid-glass.css"/>
+	<link rel="stylesheet" href="css/image.css"/>
+
+	<style>
+		.appear {
+			animation: scaleIn 1s ease-out forwards;
+		}
+		.list-intro {
+			animation:list-intro 1s ease forwards;
+		}
+		.hidden {
+		opacity: 1;
+		transition: transform 0.5s ease, opacity 0.5s ease;
+	</style>
+
+<!--特效显示-->
+    <script>
+        document.addEventListener('mousedown', function(e) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = `${e.clientX}px`;
+            dot.style.top = `${e.clientY}px`;
+            document.body.appendChild(dot);
+            
+            setTimeout(() => {
+                dot.remove();
+            }, 1000);  //特效消失时间
+        });
+    </script>
+
+<!-- 引入Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"-->
+ 
+<!-- Font Awesome图标 -->
+<!--  <i class="fas fa-home"></i>  -->
+<!--
+
+<div id="about" class="btn"><i class="fas fa-chevron-right"></i></div>
+
+ -->
+<!--center><img id="openscreen" src="open-image.svg" alt="废弃开屏画面"></center-->
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="image/spt_icon.jpg" alt="Failed to load" width=30>
+<font class="mojang">The website is for testing.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Space Pioneer Team</font>
+<div id="fixed-button">
+	<div class="list-intro">
+		<div class="dropdown">
+			<button class="dropbtn" id="dropdownBtn" style="backdrop-filter:blur(var(--glass-blur));opacity:0.9;"><i class="fas fa-bars"></i> 菜单</button>
+			<div class="dropdown-content" id="dropdownContent">
+				<span style="line-height:0.7;">
+				<p><br></p>
+				</span>
+				<span style="line-height:0.8;">
+				<font color=ffffff style="opacity:0;">..</font> <!-- 手动空格 -->
+				<button class="btn" data-target="about" onclick="changeText(0)"><i class="far fa-info-circle"></i>关于我们&nbsp;</button>
+				<font size=1 color=ffffff style="opacity:0;">.</font> <!-- 手动空格 -->
+				<button class="btn" data-target="games" onclick="changeText(1)">&nbsp;<i class="far fa-warehouse"></i>租赁服&nbsp;&nbsp;</button>
+				<p><br></p>
+				<font color=ffffff style="opacity:0;">..</font> <!-- 手动空格 -->
+				<button class="btn" data-target="q&a" onclick="changeText(2)"><i class="far fa-sitemap"></i>问题回答</button>
+				<font size=1 color=ffffff style="opacity:0;">.</font> <!-- 手动空格 -->
+				<button class="btn" data-target="join" onclick="changeText(3)"><i class="far fa-link"></i>加入我们</button>
+				<p><br></p>
+				<font color=ffffff style="opacity:0;">..</font> <!-- 手动空格 -->
+				<button class="btn" data-target="website" onclick="changeText(4)"><i class="far fa-code"></i>关于网站</button>
+				<font size=1 color=ffffff style="opacity:0;">.</font> <!-- 手动空格 -->
+				<button class="btn" data-target="logging" onclick="changeText(5)"><i class="far fa-laptop-code"></i>查看日志</button>
+				<p><br></p>
+				<font color=ffffff style="opacity:0;">..</font> <!-- 手动空格 -->
+				<button id="openBtn"><i class="far fa-business-time"></i>网站帮助</button>
+				<p><br></p>
+			</span></div>
+		</div>
+	</div>
+</div>
+<!--
+<div class="liquid-glass" style="height:100px;width:400px;"></div>
+-->
+
+<!--切换-->
+<theme-button style="backdrop-filter:blur(var(--glass-blur));opacity:0.9;" class="btnhid" id="fixedThemeButton" value="light" size="2"></theme-button>
+
+
+
+<!-- 提示 -->
+<div id="notification" class="notification"></div>
+
+
+<script>
+	//function news(e) {
+		//const dot = document.createElement('div');
+        //dot.className = 'dot';
+        //dot.style.left = `${e.clientX}px`;
+        //dot.style.top = `${e.clientY}px`;
+        //document.body.appendChild(dot);
+            
+            //setTimeout(() => {
+                //dot.remove();
+            //}, 1000);
+	//}
+
+
+        function changeText(index) {
+            // 更新按钮状态
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach((btn, i) => {
+                if(i === index) {
+                    btn.classList.add('hightlight');
+                } else {
+                    btn.classList.remove('hightlight');
+                }
+            });
+        }
+</script>
+
+<script>
+	const btn = document.getElementById('dropdownBtn');
+	const menu = document.getElementById('dropdownContent');
+		btn.addEventListener('click', function() {
+			menu.classList.toggle('show');
+		});
+        
+        // 点击页面其他区域关闭菜单
+        document.addEventListener('click', function(event) {
+			if (!event.target.matches('.dropbtn') && !event.target.matches('.dropdown-content a,.btnhid')) {
+				menu.classList.remove('show');
+			}
+        });
+</script>
+
+</head>
+
+<!-------------------------------------------------------------------------------------------------------------------->
+
+<body>
+
+    <div class="modal" id="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <span class="close-btn" id="closeBtn">&nbsp;&times;&nbsp;</span>
+            <h2>帮助</h2>
+            <p>此网站为我的世界网易基岩版租赁服SPT-CULB团队构建</p>
+			<p>禁止抄袭或模仿，违者必究责任</p>
+			<p><hr></p>
+			<p>网站站点由<b><font color=FC3142>GitHub</font></b>创建 由<b><font color=FC3142>HTML5builder</font></b>测试与编辑</p>
+			<p><hr></p>
+			<p>网站网址 <b>https://spt-space.github.io/sptgame/</b>&nbsp;<button style="padding:4px 20px;font-size:12px;" class="ore" onclick="copy('https://spt-space.github.io/sptgame/','此网站网址')"><i class="fas fa-copy"></i>复制网址</button></p>
+			<p><hr></p>
+			<p>液态玻璃模糊值<input type="range" min="0" max="100" value="20" style="-webkit-appearance:none;width: 100%;height: 8px;border-radius: 10px;background: #ddd;margin-bottom: 10px;backdrop-filter:blur(var(--glass-blur));opacity:0.75;" id="iSlider">当前值:<span id="iValue">50</span></p>
+			
+			<font color=FF404E>调试选项 </font>
+			<button id="viewBtn" class="btn-view"><i class="fas fa-list"></i> 查看日志</button>
+			<button class="ore" onclick="detectAllFile()">检测所有资源</button>
+			<button class="ore" onclick="errorTest()">触发错误</button>
+        
+        <div id="listContainer" class="list-container">
+            <ul id="itemList"></ul>
+        </div>
+        </div>
+    </div>
+
+	<script>
+		function detectAllFile() {
+			addItem(`开始检测所有资源  <button onclick="showNotification('调用函数:detectAllFile()','info')" style="outline:1px solid rgba(0,0,0,0.4);font-size:16px;border:none;color:black;background:rgba(0,0,0,0.1);">调用函数</button>`,'info');
+			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MOJANG','TTF','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/announcement.css','公告','CSS','show');			checkFileExists('https://spt-space.github.io/sptgame/css/click.css','点击','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/dropdown.css','下拉菜单','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/fix-button.css','固定','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/notice.css','提示','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/ore-ui.css','MCUI','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/pe-pc.css','模式切换','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/pop-window.css','弹窗','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/q&a.css','问答','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/reset.css','重置','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/css/text-container.css','文字容器','CSS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/image/25-10-13-img-1.jpg','更新图片-1','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/image/spt_icon.jpg','spt徽标','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MC字体','TTF','show');
+			checkFileExists('https://spt-space.github.io/sptgame/fillet2.ttf','主字体','TTF','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/check-file.css','检测文件','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/copy-href.css','复制与跳转','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/error-test.js','报错测试','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/notice.js','提示','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/q&a.js','问答','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/roll.js','滚动隐藏','JS','show');
+			checkFileExists('https://spt-space.github.io/sptgame/js/set-all.js','初始化','JS','show');
+		}
+	</script>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {    // 点击其他地方关闭 || e.target.classList.contains('modal-overlay')
+                modal.classList.remove('active');
+            }
+        });
+    </script>
+
+<div id="fixed-banner">
+	<div class="message active">此网站为我的世界中国版租赁服民间开发团队SPT建立</div>
+	<div class="message">#2</div>
+	<div class="message">#3</div>
+	<div class="message">#4</div>
+	<div class="message">#5</div>
+</div>
+
+    <script>
+        const messages = document.querySelectorAll('.message');
+        let currentIndex = 0;
+        
+        function rotateMessage() {
+            // 当前消息上滑消失
+            messages[currentIndex].classList.remove('active');
+            messages[currentIndex].classList.add('exit');
+            
+            // 计算下一条消息索引
+            currentIndex = (currentIndex + 1) % messages.length;
+            
+            // 下一条消息从下方滑入
+            setTimeout(() => {
+                messages.forEach(msg => {
+                    msg.classList.remove('exit', 'active');
+                });
+                messages[currentIndex].classList.add('active');
+            }, 250); // 与CSS过渡时间匹配
+        }
+        
+        // 每n秒切换一次 (1000 x second)
+        setInterval(rotateMessage, 5000);
+    </script>
+
+<div class="hidden">
+<div id="fixed-button-right">
+	<!--button class="toggle-btn,hidden" id="toggleBtn">切换PE</button-->
+</div>
+</div>
+    <div class="container">
+        <!-- 网站标题 -->
+        <div class="header"><div class="liquid-glass" style="height:100px;width:400px;position:relative;left:50%;top:60px;transform:translate(-50%, -50%);">
+			<!--img src="image/title.jpg" alt="title" width=80% style="position: fixed;top: 50%;left: 50%;opacity: 0;transform: translate(-50%, -50%);z-index: 10000000;animation:title 2s ease;"-->
+            <h1>𝙎𝙋𝘼𝘾𝙀 𝙋𝙄𝙊𝙉𝙀𝙀𝙍 𝙏𝙀𝘼𝙈</h1>
+            <p>创造无限可能</p>
+			</div></div>
+        </div>
+        
+
+
+        <!-- 按钮组 -->
+
+<!--
+<div class="content-wrapper">
+		<div class="toggle-content show" id="toggleContent">
+            <button class="btn" data-target="about" onclick="changeText(0)">关于我们</button>
+            <button class="btn" data-target="games" onclick="changeText(1)">游戏作品</button>
+            <button class="btn" data-target="q&a" onclick="changeText(2)">团队成员</button>
+            <button class="btn" data-target="join" onclick="changeText(3)">联系我们</button>
+			<p><br></p>
+			<p><h3><b>当前为手机端模式</b></h3></p>
+			<p><br></p>
+			<p><h3><b>当前为手机端模式</b></h3></p>
+			<p><br></p>
+			<p><h3><b>当前为手机端模式</b></h3></p>
+			<p><br></p>
+        </div>
+</div> -->
+
+
+
+
+    <script>
+        const toggleBtn = document.getElementById('toggleBtn');
+        const toggleContent = document.getElementById('toggleContent');
+        const staticContent = document.getElementById('staticContent');
+        
+        toggleBtn.addEventListener('click', function() {
+            const isShowing = toggleContent.classList.toggle('show');
+            toggleBtn.textContent = isShowing ? '切换PE' : '切换PC';
+            
+            // 调整静态内容的间距
+            staticContent.style.marginTop = isShowing ? '10px' : '0';
+        });
+        
+	</script>
+        <!-- 内容区块 -->
+
+
+        <div class="content-block">
+            <!-- 介绍内容区域 -->
+            <div id="about" class="content-intro"><center><span style="line-height: 2;">
+                <h2><font color=fa6a00><i class="fas fa-info-circle"></i>关于我们</font></h2>
+                <p><h3><font color=3C8833>认识一下𝙎𝙋𝙏-𝘾𝙇𝙐𝘽吧</font></h3></p>
+				<p>𝙎𝙋𝙏-𝘾𝙇𝙐𝘽成立于2024年<p>
+				<p>由原来的帅帅豪服务器搭建团队演变而来</p>
+				<p>全称𝙎𝙋𝘼𝘾𝙀 𝙋𝙄𝙊𝙉𝙀𝙀𝙍 𝙏𝙀𝘼𝙈</p>
+				<p>是一个专注于为玩家打造优秀游戏环境的组织</p>
+				<p>从无限资源到地铁逃生，都为玩家提供了一个舒适的环境</p>
+				<p>我们积极响应玩家反馈，并且认真处理每一个外挂</p>
+				<p>现在团队的人员为𝙎𝙋𝘼𝘾𝙀&<span class="highlight" onclick="showNotification('秀才名归，即Свобода','info')">秀才名归</span></p>
+				<hr width=50%>
+				<p><h3><font color=3C8833>团队变故</font></h3></p>
+				<p>在2025/07/14日</p>	
+				<p>原𝙎𝙋𝙏-𝘾𝙇𝙐𝘽的𝙎𝙋𝘼𝘾𝙀&<span class="highlight" onclick="showNotification('秀才名归，即Свобода','info')">秀才名归</span></p>
+				<p>因不满于帅帅豪的回档解卡方式以及无底线圈钱行为</p>
+				<p>决定脱离帅帅豪"统治"</p>
+				<p>最终演变为了现在的𝙎𝙋𝙏-𝘾𝙇𝙐𝘽</p>
+				<hr width=50%>
+				<p><h3><font color=3C8833>当前成员</font></h3></p>
+				<p><span class="highlight" onclick="showNotification('秀才名归，即Свобода','info')">秀才名归</span></p>
+				<p>𝙎𝙋𝘼𝘾𝙀</p>
+			</span></center></div>
+            
+
+
+            <div id="games" class="content-intro"><center><span style="line-height: 2;">
+                <h2><font color=fa6a00><i class="far fa-warehouse"></i>租赁服</font></h2>
+                <p>1</p>
+				</center></span>
+            </div>
+            
+
+
+            <div id="q&a" class="content-intro"><center><span style="line-height: 2;">
+                <h2><font color=fa6a00><i class="far fa-sitemap"></i>问题回答</font></h2></center>
+				<center><hr width=50%></center>
+				<span style="line-height: 1;">
+				<p><br></p>
+				<p><center><h3><font color=3C8833>服  务  器  问  题</font></h3></center></p>
+				<p><br></p>
+				</span>
+				<div class="question" onclick="toggleAnswer(1)">
+					为什么服务器进不去？
+				</div>
+        		<div class="answer-wrapper" id="wrapper1">
+            		<div class="answer" id="answer1">
+                		<p>1.检查您的网络连接是否稳定，如果网络正常，请等待几分钟，防止网易服务器抽风</p>
+						<p>2.如果仍然不能成功加载，请上报给我们</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(2)">
+					进入服务器后一直显示"正在加载地形"是怎么回事？
+				</div>
+        		<div class="answer-wrapper" id="wrapper2">
+            		<div class="answer" id="answer2">
+                		<p>1.可能触发了软件的某些bug，建议后台关闭后重新打开</p>
+						<p>2.您由于违反了规则被OP封禁</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(3)">
+					UI显示太挡眼怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper3">
+            		<div class="answer" id="answer3">
+                		<p>1.前往商店的尽头</p>
+						<p>2.按下按钮在三种显示模式中切换</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(4)">
+					地图找不到撤离点怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper4">
+            		<div class="answer" id="answer4">
+                		<p>1.在主城的潜影盒中拿取指南针</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(5)">
+					手持药水潜行后为什么不能触发喝药效果？
+				</div>
+        		<div class="answer-wrapper" id="wrapper5">
+            		<div class="answer" id="answer5">
+                		<p>1.潜行检测指令为了降低错误率只能应用于检测玩家不动时的检测</p>
+						<p>2.查看这瓶药水是否为潜行触发</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(6)">
+					被管理员误封了怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper6">
+            		<div class="answer" id="answer6">
+                		<p>1.加入QQ群反馈，需要提交证据</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(7)">
+					服务器特别卡怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper7">
+            		<div class="answer" id="answer7">
+                		<p>1.检查网络</p>
+						<p>2.如果还不行请上报给我们</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(8)">
+					服务器有外挂怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper8">
+            		<div class="answer" id="answer8">
+                		<p>1.加入QQ群举报，需要视频或截图</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(9)">
+					QQ群审核没通过怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper9">
+            		<div class="answer" id="answer9">
+                		<p>1.确保你的账号安全</p>
+						<p>2.确认你不是外挂使用者</p>
+						<p>3.确保你回答的问题正确且正常</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(10)">
+					怎么进行充值？
+				</div>
+        		<div class="answer-wrapper" id="wrapper10">
+            		<div class="answer" id="answer10">
+                		<p>1.添加服务器主城服务区中两个微信的任意一个</p>
+            		</div>
+        		</div>
+
+				<span style="line-height: 1;">
+				<p><br></p>
+				<p><center><h3><font color=3C8833>网  站  问  题</font></h3></center></p>
+				<p><br></p>
+				</span>
+				
+				<div class="question" onclick="toggleAnswer(11)">
+					网站看着非常奇怪，只有文字是什么情况？
+				</div>
+        		<div class="answer-wrapper" id="wrapper11">
+            		<div class="answer" id="answer11">
+                		<p>1.请刷新，防止css伪加载</p>
+            		</div>
+        		</div>
+	
+				<div class="question" onclick="toggleAnswer(12)">
+					发现网站bug怎么处理？
+				</div>
+        		<div class="answer-wrapper" id="wrapper12">
+            		<div class="answer" id="answer12">
+                		<p>1.添加QQ群，上报给𝙎𝙋𝘼𝘾𝙀</p>
+            		</div>
+        		</div>
+
+				<div class="question" onclick="toggleAnswer(13)">
+					网站挂了怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper13">
+            		<div class="answer" id="answer13">
+                		<p>1.等待GitHub服务器恢复，或进入旧网站:https://sptgame.simdif.com</p>
+						<p>
+						<button style="padding:4px 15px;font-size:12px;" class="ore" onclick="copy('https://sptgame.simdif.com','旧网站网址')"><i class="fas fa-copy"></i>复制网址</button>
+						<button style="padding:4px 15px;font-size:12px;" class="ore" onclick="href('https://sptgame.simdif.com','旧网站')">前往网页</button>
+						</p>
+						<p>2.如果迟迟没有反应，请上报给𝙎𝙋𝘼𝘾𝙀</p>
+            		</div>
+        		</div>
+	
+				<div class="question" onclick="toggleAnswer(14)">
+					网站图片或字体加载不出来怎么办？
+				</div>
+        		<div class="answer-wrapper" id="wrapper14">
+            		<div class="answer" id="answer14">
+                		<p>1.耐心等待，第一次加载会很慢</p>
+						<p>2.检测资源是否存在 <button style="padding:4px 15px;font-size:12px;" class="ore" onclick="detectImageTtfFile()">检测</button></p>
+						<p>3.还不行的话添加QQ群，上报给𝙎𝙋𝘼𝘾𝙀</p>
+            		</div>
+        		</div>
+
+
+				</span>
+            </div>
+            
+	<script>
+		function detectImageTtfFile() {
+			addItem(`开始检测图片与字体资源  <button onclick="showNotification('调用函数:detectImageTtfFile()','info')" style="outline:1px solid rgba(0,0,0,0.4);font-size:16px;border:none;color:black;background:rgba(0,0,0,0.1);">调用函数</button>`,'info');
+			checkFileExists('https://spt-space.github.io/sptgame/image/25-10-13-img-1.jpg','更新图片-1','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/image/spt_icon.jpg','spt徽标','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MC字体','TTF','show');
+			checkFileExists('https://spt-space.github.io/sptgame/fillet2.ttf','主字体','TTF','show');
+		}
+	</script>
+
+            <div id="join" class="content-intro"><center><span style="line-height: 2;">
+                <h2><font color=fa6a00><i class="far fa-link"></i>加入我们</font></h2>
+                <p>1</p>
+				</center></span>
+            </div>
+
+
+
+            <div id="website" class="content-intro"><center><span style="line-height: 2;">
+                <h2><font color=fa6a00><i class="far fa-code"></i>关于网站</font></h2>
+                <p><h3><font color=3C8833>网站更新</font></h3></p>
+				<p>2025-02-23</p>
+				<p>网站基于SimDif的免费模板架构搭建完成</p>
+				<p><hr width=50%></p>
+				<p>2025-10-12</p>
+				<p>网站基于GitHub Pages搭建完成</p>
+				<p><hr width=50%></p>
+				<p>2025-10-13</p>
+				<p>下拉菜单中的UI风格更换为“Minecraft-Ore”(如下图)</p>
+				<p>调整了徽标及其文字位置，现在不被遮挡</p>
+				<p>删除了按钮组与PC,PE切换</p>
+				<p>修改了开屏动画，使其更加有动感</p>
+				<p>为“关于我们”部分撰写了新的文章</p>
+				<img src="image/25-10-13-img-1.jpg" class="image" alt="25-10-13-img-1" width=70%>
+				<p><hr width=50%></p>
+				<p>2025-10-15</p>
+				<p>文字容器的左边框颜色由#3498DB<font color=3498DB>■</font>改为#4EA1FF<font color=4EA1FF>■</font>，现在看起来更亮了</p>
+				<p><hr width=50%></p>
+				<p>2025-10-16</p>
+				<p>Font Awesome图标由V5.15.3改为V6.4.0</p>
+				<p>修复菜单按钮动画颜色错误</p>
+				<p>添加了提示栏</p>
+				<p>
+					<button class="ore" onclick="showNotification('提示','info')">提示</button>&nbsp;
+					<button class="ore" onclick="showNotification('成功','success')">成功</button>&nbsp;
+					<button class="ore" onclick="showNotification('警告','warning')">警告</button>&nbsp;
+					<button class="ore" onclick="showNotification('失败','error')">失败</button>&nbsp;
+					<button class="ore" onclick="showNotification('加载','loading')">加载</button>
+				</p>
+				
+				<p><br></p>
+				<p><hr width=50%></p>
+				<p>2025-10-17</p>
+				<p>字体由宋体更改为圆体</p>
+				<p>字体宽度统一</p>
+				<p>添加资源检测，网址复制，跳转网站按钮</p>
+
+				<p><hr width=50%></p>
+				<p>2025-10-18</p>
+				<p>添加了日志(菜单>网站帮助>查看日志)</p>
+				<p>添加了人工报错按钮(菜单>网站帮助>触发错误)</p>
+				<p>JavaScript分多个文件加载</p>
+
+				<p><hr width=50%></p>
+				<p>2025-10-19</p>
+				<p>目前不知道怎么修复banner与遮罩错位的bug，有时好有时坏的</p>
+				<p>新增“黑夜模式”，通过右上方按钮切换</p>
+				<p>新增“液态玻璃”界面UI，模糊率可通过网站帮助中切换</p>
+				<p>重写界面，现在更有层次感了</p>
+				<p>为多个UI增加了高光</p>
+				<p class="liquid-glass" style="height:75px;width:100%;">液态玻璃展示</p>
+				<p><br></p>
+				<img src="image/25-10-19-img-1.jpg" class="image" alt="25-10-19-img-1" width=80%>
+				</center></span>
+			</div>
+
+
+			<div id="logging" class="content-intro"><center><span style="line-height: 2;">
+                <h2><font color=fa6a00><i class="far fa-laptop-code"></i>查看日志</font></h2>
+                <p><h3><font color=3C8833>日志</font></h3></p>
+				<div class="log-container">
+            		<ul id="log"></ul>
+        		</div>
+				</center></span>
+            </div>
+        </div>
+    </div>
+
+	<script>
+	window.addEventListener('error', function(event) {
+    	addItem(`<font color=E85445>全局错误</font><p>>> ${event.message}</p><p>Url:${event.source}</p><p>Lineno:${event.lineno} Colno:${event.colno}</p><p>Error:${event.error}</p>`,'error');
+	});
+	</script>
+	<script>
+	//运行列表
+		// 查看列表
+        viewBtn.addEventListener('click', function() {
+            listContainer.classList.toggle('visible');
+        });
+            
+        function addItem(text,type) {
+			let icon = '';
+			let color = '';
+			switch(type) {
+                case 'success':
+					icon = '<i class="fas fa-check-circle"></i>';
+					color = '<font color=36CD78>';
+                    break;
+                case 'warning':
+					icon = '<i class="fas fa-exclamation-triangle"></i>';
+					color = '<font color=F1C61A>';
+                    break;
+                case 'error':
+					icon = '<i class="fas fa-times-circle"></i>';
+					color = '<font color=E85445>';
+                    break;
+                case 'loading':
+					icon = '<i class="fas fa-spinner fa-spin"></i>';
+					color = '<font color=3493DD>';
+                    break;
+                default:
+					color = '<font color=000000>';
+					icon = '';
+            }
+            const li = document.createElement('li');
+			const li2 = document.createElement('li');
+			let now = new Date();
+			let time = now.toLocaleTimeString();
+            li.innerHTML = `<div>[${time}] ${color}${icon}</font> ${text}</div>`;
+			li2.innerHTML = `<div>[${time}] ${color}${icon}</font> ${text}</div>`;
+            if (itemList.firstChild) {
+				itemList.insertBefore(li, itemList.firstChild);
+				log.insertBefore(li2, log.firstChild);
+            } else {
+				log.appendChild(li2);
+				itemList.appendChild(li);
+            }
+		}
+	</script>
+	<script src= "js/check-file.js"></script>
+	<script src= "js/copy-href.js"></script>
+	<script src= "js/notice.js"></script>
+	<script src= "js/q&a.js"></script>
+	<script src= "js/roll.js"></script>
+	<script src= "js/set-all.js"></script>
+	<script src= "js/error-test.js"></script>
+	<script src= "js/theme-button.js"></script>
+	<script src= "js/liquid-glass.js"></script>
+	    <script>
+    	fixedThemeButton.addEventListener("change", e => {
+			let count = 0 ;
+			const allElements = document.querySelectorAll('*');
+        	if (e.detail === 'dark') {
+				allElements.forEach(function(element) {
+   					element.classList.add('dark');
+					count=count+1;
+				});
+				addItem(`${count} objects add '.dark'`,'info');
+			}
+			else {
+				allElements.forEach(function(element) {
+   					element.classList.remove('dark');
+					count=count+1;
+				});
+				addItem(`${count} objects remove '.dark'`,'info');
+        	}
+      	});
+    </script>
+</body>
+</html>
