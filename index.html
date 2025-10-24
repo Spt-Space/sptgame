@@ -26,15 +26,11 @@
 	@font-face {
 		font-family: 'mojang';
 		src:url('MOJANG.ttf') format('truetype');
-		font-weight: normal;
-		font-style: normal;
 	}
 
 	@font-face {
 		font-family: 'fillet';
 		src:url('fillet2.ttf') format('truetype');
-		font-weight: normal;
-		font-style: normal;
 	}
 	</style>
 
@@ -99,7 +95,7 @@
 <div id="fixed-button">
 	<div class="list-intro">
 		<div class="dropdown">
-			<button class="dropbtn" id="dropdownBtn" style="backdrop-filter:blur(var(--glass-blur));opacity:0.9;"><i class="fas fa-bars"></i> 菜单</button>
+			<button class="dropbtn" id="dropdownBtn" style=""><i class="fas fa-bars"></i> 菜单</button>
 			<div class="dropdown-content" id="dropdownContent">
 				<span style="line-height:0.7;">
 				<p><br></p>
@@ -108,7 +104,7 @@
 				<font color=ffffff style="opacity:0;">..</font> <!-- 手动空格 -->
 				<button class="btn" data-target="about" onclick="changeText(0)"><i class="far fa-info-circle"></i>关于我们&nbsp;</button>
 				<font size=1 color=ffffff style="opacity:0;">.</font> <!-- 手动空格 -->
-				<button class="btn" data-target="games" onclick="changeText(1)">&nbsp;<i class="far fa-warehouse"></i>租赁服&nbsp;&nbsp;</button>
+				<button class="btn" data-target="games" onclick="changeText(1)">&nbsp;<i class="far fa-warehouse"></i>服务器&nbsp;&nbsp;</button>
 				<p><br></p>
 				<font color=ffffff style="opacity:0;">..</font> <!-- 手动空格 -->
 				<button class="btn" data-target="q&a" onclick="changeText(2)"><i class="far fa-sitemap"></i>问题回答</button>
@@ -121,7 +117,7 @@
 				<button class="btn" data-target="logging" onclick="changeText(5)"><i class="far fa-laptop-code"></i>查看日志</button>
 				<p><br></p>
 				<font color=ffffff style="opacity:0;">..</font> <!-- 手动空格 -->
-				<button id="openBtn"><i class="far fa-business-time"></i>网站帮助</button>
+				<button id="openBtn"><i class="far fa-business-time"></i>网站详细</button>
 				<p><br></p>
 			</span></div>
 		</div>
@@ -132,7 +128,7 @@
 -->
 
 <!--切换-->
-<theme-button style="backdrop-filter:blur(var(--glass-blur));opacity:0.9;" class="btnhid" id="fixedThemeButton" value="light" size="2"></theme-button>
+<theme-button style="backdrop-filter:blur(var(--glass-blur));opacity:0.9;" class="btnhid" id="fixedThemeButton" value="light" size="2.0"></theme-button>
 
 
 
@@ -192,11 +188,21 @@
         <div class="modal-overlay"></div>
         <div class="modal-content">
             <span class="close-btn" id="closeBtn">&nbsp;&times;&nbsp;</span>
-            <h2>帮助</h2>
+            <h2>详细</h2>
+			<p style="line-height:0.3;"><br></p>
             <p>此网站为我的世界网易基岩版租赁服SPT-CULB团队构建</p>
 			<p>禁止抄袭或模仿，违者必究责任</p>
 			<p><hr></p>
 			<p>网站站点由<b><font color=FC3142>GitHub</font></b>创建 由<b><font color=FC3142>HTML5builder</font></b>测试与编辑</p>
+			<p><hr></p>
+			<p>
+			深色切换按钮来源自
+			<u onclick="showNotification('https://github.com/Xiumuzaidiao/Day-night-toggle-button','info')">
+			GitHub
+			</u>
+			&nbsp;
+			<button style="padding:4px 20px;font-size:12px;" class="ore" onclick="copy('https://github.com/Xiumuzaidiao/Day-night-toggle-button','GitHub深色切换按钮网址')"><i class="fas fa-copy"></i>复制网址</button>
+			</p>
 			<p><hr></p>
 			<p>网站网址 <b>https://spt-space.github.io/sptgame/</b>&nbsp;<button style="padding:4px 20px;font-size:12px;" class="ore" onclick="copy('https://spt-space.github.io/sptgame/','此网站网址')"><i class="fas fa-copy"></i>复制网址</button></p>
 			<p><hr></p>
@@ -215,7 +221,7 @@
 
 	<script>
 		function detectAllFile() {
-			addItem(`开始检测所有资源  <button onclick="showNotification('调用函数:detectAllFile()','info')" style="outline:1px solid rgba(0,0,0,0.4);font-size:16px;border:none;color:black;background:rgba(0,0,0,0.1);">调用函数</button>`,'info');
+			addItem(`开始检测所有资源  <button onclick="showNotification('调用函数:detectAllFile()','info')" class="logHighlight" style="font-size:16px;">调用函数</button>`,'info');
 			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MOJANG','TTF','show');
 			checkFileExists('https://spt-space.github.io/sptgame/css/announcement.css','公告','CSS','show');			checkFileExists('https://spt-space.github.io/sptgame/css/click.css','点击','CSS','show');
 			checkFileExists('https://spt-space.github.io/sptgame/css/dropdown.css','下拉菜单','CSS','show');
@@ -231,8 +237,6 @@
 			checkFileExists('https://spt-space.github.io/sptgame/image/spt_icon.jpg','spt徽标','IMAGE','show');
 			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MC字体','TTF','show');
 			checkFileExists('https://spt-space.github.io/sptgame/fillet2.ttf','主字体','TTF','show');
-			checkFileExists('https://spt-space.github.io/sptgame/js/check-file.css','检测文件','JS','show');
-			checkFileExists('https://spt-space.github.io/sptgame/js/copy-href.css','复制与跳转','JS','show');
 			checkFileExists('https://spt-space.github.io/sptgame/js/error-test.js','报错测试','JS','show');
 			checkFileExists('https://spt-space.github.io/sptgame/js/notice.js','提示','JS','show');
 			checkFileExists('https://spt-space.github.io/sptgame/js/q&a.js','问答','JS','show');
@@ -262,11 +266,24 @@
     </script>
 
 <div id="fixed-banner">
-	<div class="message active">此网站为我的世界中国版租赁服民间开发团队SPT建立</div>
-	<div class="message">#2</div>
-	<div class="message">#3</div>
-	<div class="message">#4</div>
-	<div class="message">#5</div>
+	<div class="message active">欢迎来到SPACE PIONEER TEAM官方网站</div>
+	<div class="message">希望此网站可以解决您的一些问题</div>
+	<div class="message">不能解决的问题可以加入群聊提问</div>
+	<div class="message">祝您游戏愉快</div>
+	<div class="message">[提示]遇到问题? 看看“问题回答”吧</div>
+	<div class="message">[提示]不知道怎么游玩? 问问老玩家吧</div>
+	<div class="message">[提示]金币可以购买道具与装备</div>
+	<div class="message">[提示]点券可以兑换金币，也可以购买强力道具与装备</div>
+	<div class="message">[提示]在无限资源你可以随意发展</div>
+	<div class="message">[提示]地铁逃生，搜打撤</div>
+	<div class="message">[提示]小心玩家从背后偷袭</div>
+	<div class="message">[提示]时刻注意自己的血量</div>
+	<div class="message">[提示]小心非法组队遭遇反水</div>
+	<div class="message">[冷知识]兑换码有时候会抽风</div>
+	<div class="message">[冷知识]网易即将开放“我的山头”:可以加模组的租赁费</div>
+	<div class="message">[冷知识]写网页真的非常折磨</div>
+	<div class="message">我懒得写这条啦</div>
+	<div class="message">这条被小猫吃啦</div>
 </div>
 
     <script>
@@ -303,7 +320,7 @@
         <!-- 网站标题 -->
         <div class="header"><div class="liquid-glass" style="height:100px;width:400px;position:relative;left:50%;top:60px;transform:translate(-50%, -50%);">
 			<!--img src="image/title.jpg" alt="title" width=80% style="position: fixed;top: 50%;left: 50%;opacity: 0;transform: translate(-50%, -50%);z-index: 10000000;animation:title 2s ease;"-->
-            <h1>𝙎𝙋𝘼𝘾𝙀 𝙋𝙄𝙊𝙉𝙀𝙀𝙍 𝙏𝙀𝘼𝙈</h1>
+            <h1 style="font-weight: normal;">𝙎𝙋𝘼𝘾𝙀 𝙋𝙄𝙊𝙉𝙀𝙀𝙍 𝙏𝙀𝘼𝙈</h1>
             <p>创造无限可能</p>
 			</div></div>
         </div>
@@ -352,8 +369,8 @@
         <div class="content-block">
             <!-- 介绍内容区域 -->
             <div id="about" class="content-intro"><center><span style="line-height: 2;">
-                <h2><font color=fa6a00><i class="fas fa-info-circle"></i>关于我们</font></h2>
-                <p><h3><font color=3C8833>认识一下𝙎𝙋𝙏-𝘾𝙇𝙐𝘽吧</font></h3></p>
+                <h2 style="font-weight: normal;"><font color=fa6a00><i class="fas fa-info-circle"></i>关于我们</font></h2>
+                <p><h3 style="font-weight: normal;"><font color=3C8833>认识一下𝙎𝙋𝙏-𝘾𝙇𝙐𝘽吧</font></h3></p>
 				<p>𝙎𝙋𝙏-𝘾𝙇𝙐𝘽成立于2024年<p>
 				<p>由原来的帅帅豪服务器搭建团队演变而来</p>
 				<p>全称𝙎𝙋𝘼𝘾𝙀 𝙋𝙄𝙊𝙉𝙀𝙀𝙍 𝙏𝙀𝘼𝙈</p>
@@ -362,14 +379,14 @@
 				<p>我们积极响应玩家反馈，并且认真处理每一个外挂</p>
 				<p>现在团队的人员为𝙎𝙋𝘼𝘾𝙀&<span class="highlight" onclick="showNotification('秀才名归，即Свобода','info')">秀才名归</span></p>
 				<hr width=50%>
-				<p><h3><font color=3C8833>团队变故</font></h3></p>
+				<p><h3 style="font-weight: normal;"><font color=3C8833>团队变故</font></h3></p>
 				<p>在2025/07/14日</p>	
 				<p>原𝙎𝙋𝙏-𝘾𝙇𝙐𝘽的𝙎𝙋𝘼𝘾𝙀&<span class="highlight" onclick="showNotification('秀才名归，即Свобода','info')">秀才名归</span></p>
 				<p>因不满于帅帅豪的回档解卡方式以及无底线圈钱行为</p>
 				<p>决定脱离帅帅豪"统治"</p>
 				<p>最终演变为了现在的𝙎𝙋𝙏-𝘾𝙇𝙐𝘽</p>
 				<hr width=50%>
-				<p><h3><font color=3C8833>当前成员</font></h3></p>
+				<p><h3 style="font-weight: normal;"><font color=3C8833>当前成员</font></h3></p>
 				<p><span class="highlight" onclick="showNotification('秀才名归，即Свобода','info')">秀才名归</span></p>
 				<p>𝙎𝙋𝘼𝘾𝙀</p>
 			</span></center></div>
@@ -377,23 +394,25 @@
 
 
             <div id="games" class="content-intro"><center><span style="line-height: 2;">
-                <h2><font color=fa6a00><i class="far fa-warehouse"></i>租赁服</font></h2>
-                <p>1</p>
+                <h2 style="font-weight: normal;"><font color=fa6a00><i class="far fa-warehouse"></i>服务器</font></h2>
+                <p></p> 
+                <p></p>
+                <p></p>
 				</center></span>
             </div>
             
 
 
             <div id="q&a" class="content-intro"><center><span style="line-height: 2;">
-                <h2><font color=fa6a00><i class="far fa-sitemap"></i>问题回答</font></h2></center>
+                <h2 style="font-weight: normal;"><font color=fa6a00><i class="far fa-sitemap"></i>问题回答</font></h2></center>
 				<center><hr width=50%></center>
 				<span style="line-height: 1;">
 				<p><br></p>
-				<p><center><h3><font color=3C8833>服  务  器  问  题</font></h3></center></p>
+				<p><center><h3 style="font-weight: normal;"><font color=3C8833>服务器问题</font></h3></center></p>
 				<p><br></p>
 				</span>
 				<div class="question" onclick="toggleAnswer(1)">
-					为什么服务器进不去？
+					为什么服务器进不去?
 				</div>
         		<div class="answer-wrapper" id="wrapper1">
             		<div class="answer" id="answer1">
@@ -403,7 +422,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(2)">
-					进入服务器后一直显示"正在加载地形"是怎么回事？
+					进入服务器后一直显示"正在加载地形"是怎么回事?
 				</div>
         		<div class="answer-wrapper" id="wrapper2">
             		<div class="answer" id="answer2">
@@ -413,7 +432,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(3)">
-					UI显示太挡眼怎么办？
+					UI显示太挡眼怎么办?
 				</div>
         		<div class="answer-wrapper" id="wrapper3">
             		<div class="answer" id="answer3">
@@ -423,7 +442,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(4)">
-					地图找不到撤离点怎么办？
+					地图找不到撤离点怎么办?
 				</div>
         		<div class="answer-wrapper" id="wrapper4">
             		<div class="answer" id="answer4">
@@ -432,7 +451,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(5)">
-					手持药水潜行后为什么不能触发喝药效果？
+					手持药水潜行后为什么不能触发喝药效果?
 				</div>
         		<div class="answer-wrapper" id="wrapper5">
             		<div class="answer" id="answer5">
@@ -442,7 +461,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(6)">
-					被管理员误封了怎么办？
+					被管理员误封了怎么办?
 				</div>
         		<div class="answer-wrapper" id="wrapper6">
             		<div class="answer" id="answer6">
@@ -451,7 +470,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(7)">
-					服务器特别卡怎么办？
+					服务器特别卡怎么办?
 				</div>
         		<div class="answer-wrapper" id="wrapper7">
             		<div class="answer" id="answer7">
@@ -461,7 +480,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(8)">
-					服务器有外挂怎么办？
+					服务器有外挂怎么办?
 				</div>
         		<div class="answer-wrapper" id="wrapper8">
             		<div class="answer" id="answer8">
@@ -470,7 +489,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(9)">
-					QQ群审核没通过怎么办？
+					QQ群审核没通过怎么办?
 				</div>
         		<div class="answer-wrapper" id="wrapper9">
             		<div class="answer" id="answer9">
@@ -481,7 +500,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(10)">
-					怎么进行充值？
+					怎么进行充值?
 				</div>
         		<div class="answer-wrapper" id="wrapper10">
             		<div class="answer" id="answer10">
@@ -491,12 +510,12 @@
 
 				<span style="line-height: 1;">
 				<p><br></p>
-				<p><center><h3><font color=3C8833>网  站  问  题</font></h3></center></p>
+				<p><center><h3 style="font-weight: normal;"><font color=3C8833>网站问题</font></h3></center></p>
 				<p><br></p>
 				</span>
 				
 				<div class="question" onclick="toggleAnswer(11)">
-					网站看着非常奇怪，只有文字是什么情况？
+					网站看着非常奇怪，只有文字是什么情况?
 				</div>
         		<div class="answer-wrapper" id="wrapper11">
             		<div class="answer" id="answer11">
@@ -505,7 +524,7 @@
         		</div>
 	
 				<div class="question" onclick="toggleAnswer(12)">
-					发现网站bug怎么处理？
+					发现网站bug怎么处理?
 				</div>
         		<div class="answer-wrapper" id="wrapper12">
             		<div class="answer" id="answer12">
@@ -514,7 +533,7 @@
         		</div>
 
 				<div class="question" onclick="toggleAnswer(13)">
-					网站挂了怎么办？
+					网站挂了怎么办?
 				</div>
         		<div class="answer-wrapper" id="wrapper13">
             		<div class="answer" id="answer13">
@@ -528,7 +547,7 @@
         		</div>
 	
 				<div class="question" onclick="toggleAnswer(14)">
-					网站图片或字体加载不出来怎么办？
+					网站图片或字体加载不出来怎么办?
 				</div>
         		<div class="answer-wrapper" id="wrapper14">
             		<div class="answer" id="answer14">
@@ -546,23 +565,51 @@
 		function detectImageTtfFile() {
 			addItem(`开始检测图片与字体资源  <button onclick="showNotification('调用函数:detectImageTtfFile()','info')" style="outline:1px solid rgba(0,0,0,0.4);font-size:16px;border:none;color:black;background:rgba(0,0,0,0.1);">调用函数</button>`,'info');
 			checkFileExists('https://spt-space.github.io/sptgame/image/25-10-13-img-1.jpg','更新图片-1','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/image/25-10-19-img-1.jpg','更新图片-2','IMAGE','show');
 			checkFileExists('https://spt-space.github.io/sptgame/image/spt_icon.jpg','spt徽标','IMAGE','show');
 			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MC字体','TTF','show');
 			checkFileExists('https://spt-space.github.io/sptgame/fillet2.ttf','主字体','TTF','show');
 		}
 	</script>
 
+
+
             <div id="join" class="content-intro"><center><span style="line-height: 2;">
-                <h2><font color=fa6a00><i class="far fa-link"></i>加入我们</font></h2>
-                <p>1</p>
+                <h2 style="font-weight: normal;"><font color=fa6a00><i class="far fa-link"></i>加入我们</font></h2>
+				<p><h3 style="font-weight: normal;"><font color=3C8833>加入QQ群</font></h3></p>
+                <p>加入QQ群 快速了解服务器消息</p>
+                <p>QQ群号:707972665 <button style="padding:4px 15px;font-size:12px;" class="ore" onclick="copy('707972665','QQ群号')"><i class="fas fa-copy"></i>复制群号</button></p>
+				<p style="line-height: 0.5;"><br></p>
+				<button onclick="newhref('https://qm.qq.com/q/U250cmAoIU','QQ')" class="ore" style="height:15px;width:175px;font-size:15px;line-height: 0.1;">
+					加入QQ群(mode1)
+				</button>
+				<button onclick="href('https://qm.qq.com/q/U250cmAoIU','QQ')" class="ore" style="height:15px;width:175px;font-size:15px;line-height: 0.1;">
+					加入QQ群(mode2)
+				</button>
+				<p><h3 style="font-weight: normal;"><font color=3C8833>QQ群群规</font></h3></p>
+				<p>在群里吵架的(非常严重)禁言1天~3天</p>
+				<p>禁止发一切自定义QQ聊天记录或链接弹窗按钮，<u>违者第一次禁言1天，第二次永久踢出</u></p>
+				<p>禁止宣传与本服务器无关的群聊(如要宣传请获得许可)，<u>违者禁言1天，第三次永久踢出</u></p>
+				<p>禁止发色情政治等等得敏感内容，<u>违者禁言5天，第二次永久踢出</u></p>
+				<p>禁止刷屏(连续5条的相同长消息)，<u>违者禁言10分钟，第五次踢出</u></p>
+				<p><h3 style="font-weight: normal;"><font color=3C8833>充值</font></h3></p>
+				<p><b>金币</b>:1亿-2¥</p>
+				<p><b>点券</b>:1张-7¥</p>
+				<p><b>私人仓库</b>:(目前关闭)<!--每人限制1个    20¥--></p>
+				<p><b>金币武器/道具</b>:1个-原价格(亿)×2¥</p>
+				<p><b>点券武器/道具</b>:1个#原价格(张)×7¥</p>
+				<p><b>OP+创造(管理员)</b>:120￥-需通过考核(不通过退款70）</p>
+				<p></p>
+				<p></p>
+				<p></p>
 				</center></span>
             </div>
 
 
 
             <div id="website" class="content-intro"><center><span style="line-height: 2;">
-                <h2><font color=fa6a00><i class="far fa-code"></i>关于网站</font></h2>
-                <p><h3><font color=3C8833>网站更新</font></h3></p>
+                <h2 style="font-weight: normal;"><font color=fa6a00><i class="far fa-code"></i>关于网站</font></h2>
+                <p><h3 style="font-weight: normal;"><font color=3C8833>网站更新</font></h3></p>
 				<p>2025-02-23</p>
 				<p>网站基于SimDif的免费模板架构搭建完成</p>
 				<p><hr width=50%></p>
@@ -608,20 +655,44 @@
 				<p><hr width=50%></p>
 				<p>2025-10-19</p>
 				<p>目前不知道怎么修复banner与遮罩错位的bug，有时好有时坏的</p>
-				<p>新增“黑夜模式”，通过右上方按钮切换</p>
+				<p>新增“深色模式”，通过右上方按钮切换</p>
+				<p>深色模式文字容器左边框颜色为#FEFB41<font color=FEFB41>■</font></p>
 				<p>新增“液态玻璃”界面UI，模糊率可通过网站帮助中切换</p>
 				<p>重写界面，现在更有层次感了</p>
 				<p>为多个UI增加了高光</p>
 				<p class="liquid-glass" style="height:75px;width:100%;">液态玻璃展示</p>
 				<p><br></p>
 				<img src="image/25-10-19-img-1.jpg" class="image" alt="25-10-19-img-1" width=80%>
+
+				<p><hr width=50%></p>
+				<p>2025-10-20</p>
+				<p>完善液态玻璃效果</p>
+				<p>修复日志不兼容深色模式</p>
+
+				<p><hr width=50%></p>
+				<p>2025-10-21</p>
+				<p>为多个元素添加了模糊入场效果</p>
+				<p>修复高光不兼容深色模式</p>
+
+				<p><hr width=50%></p>
+				<p>2025-10-22</p>
+				<p>为日志按钮分类，现在三种功能按钮颜色不同</p>
+				<p>修复字体宽度不正常的问题</p>
+				<p>为banner及“加入我们”部分添加了文字</p>
+
+				<p><hr width=50%></p>
+				<p>2025-10-24</p>
+				<p>Liquid Glass 增加了高亮模糊,时长调整为15s</p>
+				<p>Liquid Glass 增加了边缘高光与动画，时长调整为30s</p>
+				<p>将提示栏下调了5px，现在不再遮挡banner</p>
+
 				</center></span>
 			</div>
 
 
 			<div id="logging" class="content-intro"><center><span style="line-height: 2;">
-                <h2><font color=fa6a00><i class="far fa-laptop-code"></i>查看日志</font></h2>
-                <p><h3><font color=3C8833>日志</font></h3></p>
+                <h2 style="font-weight: normal;"><font color=fa6a00><i class="far fa-laptop-code"></i>查看日志</font></h2>
+                <p><h3 style="font-weight: normal;"><font color=3C8833>日志</font></h3></p>
 				<div class="log-container">
             		<ul id="log"></ul>
         		</div>
@@ -670,14 +741,14 @@
 			const li2 = document.createElement('li');
 			let now = new Date();
 			let time = now.toLocaleTimeString();
-            li.innerHTML = `<div>[${time}] ${color}${icon}</font> ${text}</div>`;
-			li2.innerHTML = `<div>[${time}] ${color}${icon}</font> ${text}</div>`;
+            li.innerHTML = `<div><b>[${time}]</b> ${color}${icon}</font> ${text}</div>`;
+			li2.innerHTML = `<div><b>[${time}]</b> ${color}${icon}</font> ${text}</div>`;
             if (itemList.firstChild) {
 				itemList.insertBefore(li, itemList.firstChild);
 				log.insertBefore(li2, log.firstChild);
             } else {
-				log.appendChild(li2);
 				itemList.appendChild(li);
+				log.appendChild(li2);
             }
 		}
 	</script>
@@ -700,6 +771,7 @@
 					count=count+1;
 				});
 				addItem(`${count} objects add '.dark'`,'info');
+				showNotification(`已将${count}个元素切换为深色`,'success');
 			}
 			else {
 				allElements.forEach(function(element) {
@@ -707,6 +779,7 @@
 					count=count+1;
 				});
 				addItem(`${count} objects remove '.dark'`,'info');
+				showNotification(`已将${count}个元素切换为浅色`,'success');
         	}
       	});
     </script>
