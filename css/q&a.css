@@ -1,0 +1,75 @@
+        .question {
+            background:#D2D1D6;
+			color:#000000;
+			padding:6px;
+			border-radius: 0px;
+			border: 2px solid #EEEEEF;
+			border-bottom: 4px solid #5A5A5C;
+			border-left: 2px solid #E0E0E0;
+			border-top: 2px solid #E5E5E7;
+			border-right: 2px solid #E5E5E7;
+			transition: all 0.2s ease;
+			transform: translateY(0px);
+			outline: 2px solid #000000;
+            font-size: 16px;
+            /*font-weight: 900;*/
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .question:hover {
+            background:#43942B;
+			color:#ffffff;
+			padding:6px;
+			border-radius: 0px;
+			border: 2px solid #599751;
+			border-bottom: 2px solid #558547;
+			border-left: 2px solid #558547;
+			border-top: 2px solid #599751;
+			border-right: 2px solid #599751;
+			transform: translateY(0px);
+			transition: all 0.2s ease;
+			outline: 2px solid #000000;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+        .question::after {
+            content: '▼';
+            position: absolute;
+            right: 20px;
+            font-size: 14px;
+            transition: transform 0.5s ease;
+        }
+        .question.active::after {
+            content: '▼';
+            transform: rotate(180deg);
+        }
+        .answer-wrapper {
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			transform: translateY(10px);
+        }
+        .answer {
+            padding: 20px;
+			margin-bottom: 20px;
+			background:#D2D1D6;
+			color:#000000;
+			padding:12px;
+			border-radius: 0px;
+			border: 2px solid #EEEEEF;
+			border-bottom: 2px solid #202020;
+			border-left: 2px solid #575757;
+			border-top: 2px solid #575757;
+			border-right: 2px solid #202020;
+			transition: all 0.05s ease;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .answer-wrapper.active {
+            max-height: 500px;
+        }
+        .answer-wrapper.active .answer {
+            opacity: 1;
+            transform: translateY(0px);
+        }
