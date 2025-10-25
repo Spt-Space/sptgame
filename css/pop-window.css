@@ -45,7 +45,7 @@
 			backdrop-filter: blur(var(--glass-blur));
 			font-family: 'fillet';
             position: fixed;
-            top: 0;
+            top: 100px;
             left: 0;
             width: 100%;
             height: 200%;
