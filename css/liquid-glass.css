@@ -1,0 +1,86 @@
+		.liquid-glass {
+			text-align: center;
+			background: var(--glass-bg);
+			backdrop-filter: blur(var(--glass-blur));
+			-webkit-backdrop-filter: blur(var(--glass-blur));
+			border-radius: 20px;
+			border: 1px solid var(--glass-border);
+			box-shadow: var(--glass-shadow);
+			overflow: hidden;
+			transition: all 0.3s ease;
+			padding: 20px;
+			animation: liquidShadowDark 30s ease infinite;
+		}
+		.liquid-glass.dark {
+			animation: liquidShadowDark 30s ease infinite;
+		}
+		.liquid-glass::before {
+			content: '';
+			position: absolute;
+			top: -50%;
+			left: -50%;
+			width: 200%;
+			height: 200%;
+			box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.05);
+			background: rgba(0,0,0,0.05);
+			transform: rotate(30deg);
+			animation: liquidFlow 15s linear infinite;
+			z-index: -1;
+		}
+		.liquid-glass.dark::before {
+			box-shadow: 0px 0px 3px 3px rgba(255,255,255,0.05);
+			background: rgba(255,255,255,0.05);
+		}
+		
+		@keyframes liquidFlow {
+			0% { transform: rotate(30deg) translate(0, 0); }
+			25% { transform: rotate(30deg) translate(-5%, 5%); }
+			50% { transform: rotate(30deg) translate(0, 10%); }
+			75% { transform: rotate(30deg) translate(5%, 5%); }
+			100% { transform: rotate(30deg) translate(0, 0); }
+		}
+
+		@keyframes liquidShadowDark {
+			0% {
+				box-shadow:var(--glass-shadow),
+				1px 0px 0px 0px rgba(255,255,255,0.5),
+				-1px 0px 0px 0px rgba(255,255,255,0.5),
+				inset 0px 1px 0px 0px rgba(255,255,255,0.3),
+				inset 0px -1px 0px 0px rgba(255,255,255,0.3);
+			} 50% {
+				box-shadow:var(--glass-shadow),
+				1px 0px 0px 0px rgba(255,255,255,0.3),
+				-1px 0px 0px 0px rgba(255,255,255,0.3),
+				inset 0px 1px 0px 0px rgba(255,255,255,0.5),
+				inset 0px -1px 0px 0px rgba(255,255,255,0.5);
+			} 100% {
+				box-shadow:var(--glass-shadow),
+				1px 0px 0px 0px rgba(255,255,255,0.5),
+				-1px 0px 0px 0px rgba(255,255,255,0.5),
+				inset 0px 1px 0px 0px rgba(255,255,255,0.3),
+				inset 0px -1px 0px 0px rgba(255,255,255,0.3);
+			}
+		}
+
+		@keyframes liquidShadowLight {
+			0% {
+				box-shadow:var(--glass-shadow),
+				1px 0px 0px 0px rgba(0,0,0,0.5),
+				-1px 0px 0px 0px rgba(0,0,0,0.5),
+				0px 1px 0px 0px rgba(0,0,0,0.3),
+				0px -1px 0px 0px rgba(0,0,0,0.3);
+			} 50% {
+				box-shadow:var(--glass-shadow),
+				1px 0px 0px 0px rgba(0,0,0,0.3),
+				-1px 0px 0px 0px rgba(0,0,0,0.3),
+				0px 1px 0px 0px rgba(0,0,0,0.5),
+				0px -1px 0px 0px rgba(0,0,0,0.5);
+			} 100% {
+				box-shadow:var(--glass-shadow),
+				1px 0px 0px 0px rgba(0,0,0,0.5),
+				-1px 0px 0px 0px rgba(0,0,0,0.5),
+				0px 1px 0px 0px rgba(0,0,0,0.3),
+				0px -1px 0px 0px rgba(0,0,0,0.3);
+			}
+		}
+

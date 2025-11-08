@@ -1,0 +1,18 @@
+/* 基础样式重置 */
+		* {
+			margin: -100; 
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'fillet', sans-serif;
+		}
+		
+		body {
+			transition: background-color 0.5s ease;
+			background-color: #D6E2FC;
+			color: #333;
+			padding: 20px;
+		}
+		body.dark {
+			background-color: #040305;
+		}
+		

@@ -1,0 +1,115 @@
+:root {
+	/* shadow */
+	--shadow-w-s:
+		inset 0px 1px 2px rgba(255,255,255,0.7),
+		0px 1px 2px rgba(0,0,0,0.3),
+		0px 2px 4px rgba(0,0,0,0.15);
+
+	--shadow-w-m:
+		inset 0px 1px 2px rgba(255,255,255,0.7),
+		0px 2px 4px rgba(0,0,0,0.3),
+		0px 4px 8px rgba(0,0,0,0.15);
+
+	--shadow-w-l:
+		inset 0px 1px 3px rgba(255,255,255,0.7),
+		0px 4px 6px rgba(0,0,0,0.3),
+		0px 6px 10px rgba(0,0,0,0.15);
+
+	--shadow-b-s:
+		inset 0px 1px 2px rgba(0,0,0,0.7),
+		0px 1px 2px rgba(255,255,255,0.3),
+		0px 2px 4px rgba(255,255,255,0.15);
+
+	--shadow-b-m:
+		inset 0px 1px 2px rgba(0,0,0,0.7),
+		0px 2px 4px rgba(255,255,255,0.3),
+		0px 4px 8px rgba(255,255,255,0.15);
+
+	--shadow-b-l:
+		inset 0px 1px 3px rgba(0,0,0,0.7),
+		0px 4px 6px rgba(255,255,255,0.3),
+		0px 6px 10px rgba(255,255,255,0.15);
+
+
+	/* liquid glass */
+	--glass-bg: rgba(255, 255, 255, 0.15);
+	--glass-border: rgba(255, 255, 255, 0.25);
+	--glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+	--glass-blur: 2px;
+
+	/* btn */
+	--btn-o:0.95;
+}
+
+.logHighlight , .logHighlight:hover {
+	overflow: hidden;
+	backdrop-filter: blur(var(--glass-blur));
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	font-size:16px;
+	border:1px solid rgba(0,0,0,0.6);;
+	color:rgba(0,0,255,0.7);
+	background:rgba(255,255,255,0.3);
+}
+.logHighlight-error , .logHighlight-error:hover {
+	overflow: hidden;
+	backdrop-filter: blur(var(--glass-blur));
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	font-size:16px;
+	border:1px solid rgba(0,0,0,0.6);;
+	color:rgba(255,0,0,0.7);
+	background:rgba(255,255,255,0.3);
+}
+.logHighlight-name , .logHighlight-name:hover {
+	overflow: hidden;
+	backdrop-filter: blur(var(--glass-blur));
+	-webkit-backdrop-filter: blur(var(--glass-blur));
+	font-size:16px;
+	border:1px solid rgba(0,0,0,0.6);;
+	color:rgba(25,25,25,0.7);
+	background:rgba(255,255,255,0.3);
+}
+.logHighlight-name::before , .logHighlight-error::before , .logHighlight::before {
+	opacity:0.8;
+	transform:translate(-50%, -50%);
+	transition: all 0.5s ease;
+	left:50%;
+	top:50%;
+	content:'';
+	width:0px;
+	height:0px;
+	background:#000000;
+	border-radius: 50%;
+	position:absolute;
+	z-index:-1;
+	transition: all 0s ease;
+	/*animation:log 1s ease forwards;*/
+}
+.logHighlight-name:hover::before , .logHighlight-error:hover::before , .logHighlight:hover::before {
+	opacity:0.0;
+	transform:translate(-50%, -50%);
+	width:200px;
+	height:200px;
+	transition: all 1s ease;
+}
+
+@keyframes log {
+	0% {
+		opacity:0.5;
+		transform:translate(-50%, -50%);
+		width:1px;
+		height:1px;
+	}
+	100% {
+		opacity:0.0;
+		transform:translate(-50%, -50%);
+		width:200px;
+		height:200px;
+	}
+}
+
+
+
+
+
+
+
