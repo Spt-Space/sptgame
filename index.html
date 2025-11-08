@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<link rel="icon" href="image/icon.ico" type="image/x-icon">
+	<link rel="icon" href="image/icon.ico" type="image/x-icon"> 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>𝙎𝙋𝘼𝘾𝙀 𝙋𝙄𝙊𝙉𝙀𝙀𝙍 𝙏𝙀𝘼𝙈 (𝘾𝙇𝙐𝘽)</title>
@@ -91,8 +91,9 @@
 
  -->
 <!--center><img id="openscreen" src="open-image.svg" alt="废弃开屏画面"></center-->
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="image/spt_icon.jpg" alt="Failed to load" width=30>
-<font class="mojang">The website is for testing.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Space Pioneer Team</font>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;969<img src="image/spt_icon.jpg" alt="Failed to load" width=32px>64<img src="image/icon64.jpg" alt="icon32" width=32px>32<img src="image/icon32.jpg" alt="icon32" width=32px>
+<p><font class="mojang">The website is for testing.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Space Pioneer Team</font></p>
+
 <div id="fixed-button">
 	<div class="list-intro">
 		<div class="dropdown">
@@ -214,8 +215,8 @@
 			
 			<font color=FF404E>调试选项 </font>
 			<button id="viewBtn" class="btn-view"><i class="fas fa-list"></i> 查看日志</button>
-			<button class="ore" onclick="detectAllFile()">检测所有资源</button>
-			<button class="ore" onclick="errorTest()">触发错误</button>
+			<button class="ore" onclick="detectAllFile()"><i class="fas fa-search"></i>检测所有资源</button>
+			<button class="ore" onclick="errorTest()"><i class="fas fa-tools"></i>触发错误</button>
 		
 		<div id="listContainer" class="list-container">
 			<ul id="itemList"></ul>
@@ -317,7 +318,7 @@
 
 <div class="hidden">
 <div id="fixed-button-right">
-	<!--button class="toggle-btn,hidden" id="toggleBtn">切换PE</button-->
+	<!--button class="toggle-btn" id="toggleBtn">切换PE</button-->
 </div>
 </div>
 	<div class="container">
@@ -401,13 +402,7 @@
 				<h2 style="font-weight: normal;"><font color=fa6a00><i class="far fa-warehouse"></i>服务器</font></h2>
 				<p class="liquid-glass" style="font-size:20px;line-height:0;height:25px;width:50%;">租赁服</p>
 				<p><h3 style="font-weight: normal;"><font color=3C8833>地铁逃生</font></h3></p>
-				<p></p>
-				<p></p>
-				<p></p>
-				<p></p>
-				<p></p>
-				<p></p>
-				<p></p>
+				
 				<p class="liquid-glass" style="font-size:20px;line-height:0;height:25px;width:50%;">我的山头</p>
 				<p><h3 style="font-weight: normal;"><font color=3C8833>无限资源</font></h3></p>
 				</center></span>
@@ -564,7 +559,18 @@
 				<div class="answer-wrapper" id="wrapper14">
 					<div class="answer" id="answer14">
 						<p>1.耐心等待，第一次加载会很慢</p>
-						<p>2.检测资源是否存在 <button style="padding:4px 15px;font-size:12px;" class="ore" onclick="detectImageTtfFile()">检测</button></p>
+						<p>2.检测资源是否存在 <button style="padding:4px 15px;font-size:12px;" class="ore" onclick="detectImageTtfFile()"><i class="fas fa-search"></i>检测</button></p>
+						<p>3.还不行的话添加QQ群，上报给𝙎𝙋𝘼𝘾𝙀</p>
+					</div>
+				</div>
+
+				<div class="question" onclick="toggleAnswer(15)">
+					翻阅页面文字就消失是怎么了？
+				</div>
+				<div class="answer-wrapper" id="wrapper15">
+					<div class="answer" id="answer15">
+						<p>1.耐心等待，等字体加载完</p>
+						<p>2.检测资源是否存在 <button style="padding:4px 15px;font-size:12px;" class="ore" onclick="detectTtfFile()"><i class="fas fa-search"></i>检测</button></p>
 						<p>3.还不行的话添加QQ群，上报给𝙎𝙋𝘼𝘾𝙀</p>
 					</div>
 				</div>
@@ -579,6 +585,12 @@
 			checkFileExists('https://spt-space.github.io/sptgame/image/25-10-13-img-1.jpg','更新图片-1','IMAGE','show');
 			checkFileExists('https://spt-space.github.io/sptgame/image/25-10-19-img-1.jpg','更新图片-2','IMAGE','show');
 			checkFileExists('https://spt-space.github.io/sptgame/image/spt_icon.jpg','spt徽标','IMAGE','show');
+			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MC字体','TTF','show');
+			checkFileExists('https://spt-space.github.io/sptgame/fillet2.ttf','主字体','TTF','show');
+		}
+
+		function detectTtfFile() {
+			addItem(`开始检测ttf资源  <button onclick="showNotification('调用函数:detectTtfFile()','info')" class="logHighlight" style="font-size:16px;">调用函数</button>`,'info');
 			checkFileExists('https://spt-space.github.io/sptgame/MOJANG.ttf','MC字体','TTF','show');
 			checkFileExists('https://spt-space.github.io/sptgame/fillet2.ttf','主字体','TTF','show');
 		}
@@ -622,6 +634,19 @@
 			<div id="website" class="content-intro"><center><span style="line-height: 2;">
 				<h2 style="font-weight: normal;"><font color=fa6a00><i class="far fa-code"></i>关于网站</font></h2>
 				<p><h3 style="font-weight: normal;"><font color=3C8833>网站更新</font></h3></p>
+
+				<p><hr width=50%></p>
+				<p>2025-11-8</p>
+				<p>修改了OreUi效果,与国际版同步</p>
+				<p>使用伪元素添加了多种特效</p>
+
+				<p><hr width=50%></p>
+				<p>2025-11-7</p>
+				<p>添加了页脚</p>
+
+				<p><hr width=50%></p>
+				<p>2025-10-26</p>
+				<p>修复“网站详细”错位</p>
 
 				<p><hr width=50%></p>
 				<p>2025-10-25</p>
@@ -728,12 +753,22 @@
 
 			<div id="test" class="content-intro"><center><span style="line-height: 2;">
 				<h2 style="font-weight: normal;"><font color=fa6a00><i class="far fa-pen"></i>测试页面</font></h2>
-				<p><iframe src="https://spt-space.github.io/sptgame/" height=400px width=100%></iframe></p>
+					spt_icon.jpg<img src="image/spt_icon.jpg" alt="icon969" width=20%>
+					icon32<img src="image/icon32.jpg" alt="icon32" width=20%>
+					icon64<img src="image/icon64.jpg" alt="icon64" width=20%>
+					<p>title.jpg</p><p><img src="image/title.jpg" alt="title" width=75%></p>
+					<p>25-10-13-img-1.jpg</p><p><img src="image/25-10-13-img-1.jpg" alt="25-10-13-img-1" width=75%></p>
+					<p>25-10-19-img-1.jpg</p><p><img src="image/25-10-19-img-1.jpg" alt="25-10-19-img-1" width=75%></p>
+					<p>icon.ico</p><p><img src="image/icon.ico" alt="icon.ico" width=25%></p>
 				</center></span>
 			</div>
 
 
 		</div>
+	</div>
+
+	<div class="foot">
+		<p><img src="image/icon64.jpg" alt="icon32" width=16px>2025 SPT CLUB</p>
 	</div>
 
 	<script>
@@ -796,7 +831,19 @@
 	<script src= "js/error-test.js"></script>
 	<script src= "js/theme-button.js"></script>
 	<script src= "js/liquid-glass.js"></script>
+
+<input type="file" id="fileInput">
 		<script>
+		addItem(`URL.createObjectURL('css/var.css')`,'info');
+
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0]; // 获取第一个文件
+    console.log(file.name); // 输出文件名
+    console.log(URL.createObjectURL(file)); // 创建一个可以访问文件的URL
+});
+
+
+
 		fixedThemeButton.addEventListener("change", e => {
 			let count = 0 ;
 			const allElements = document.querySelectorAll('*');
